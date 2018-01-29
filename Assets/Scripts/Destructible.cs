@@ -21,6 +21,15 @@ public class Destructible : MonoBehaviour {
 		}
 	}
 
+    public float getMaxLife() {
+        return _MaxLife;
+    }
+
+    public float getActualLife()
+    {
+        return _ActualLife;
+    }
+
 	void OnCollisionEnter2D(Collision2D coll){
 		if (coll.gameObject.tag == "Destructible") {
 			// Aplicando dano, forma ainda não final

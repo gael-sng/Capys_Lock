@@ -38,7 +38,10 @@ public class AttackSchedule : MonoBehaviour {
 	public float AirstrikeVerticalDistance = 100f;
 	public float deltaTime = 0.1f;
 
-	[Header("Scene references")]
+    public float cameraMovementTime = 1f;
+    public float projectileOvertime = 0.5f;
+
+    [Header("Scene references")]
 	public Transform attackPosition;
 	public Transform cameraEnemyPosition;
 	public Transform cameraBuildPosition;
@@ -51,10 +54,11 @@ public class AttackSchedule : MonoBehaviour {
 	public GameObject AirstrikePrefab;
 	public GameObject NapalmPrefab;
 
+    [Header("Pontuation")]
+    public float remainingCapivarasHealthWeight = 100;
+    public float remainingMoneyWeight = 0;
+    public float remainingConstructionsWeight = 0;
 
-	[Header("Cosmedic")]
-	public float cameraMovementTime = 1f;
-	public float projectileOvertime = 0.5f;
 
 	//
 	private List<GameObject> enemyLine;
@@ -190,13 +194,59 @@ public class AttackSchedule : MonoBehaviour {
 				cameraScript.goToLocation(cameraEnemyPosition.position, cameraMovementTime);
 				StartCoroutine(waitTime(cameraMovementTime));
 			}
-			else {
-				currentState = GameState.EndGame;
-				cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
-				StartCoroutine(waitTime(cameraMovementTime));
+			else {				
+                EndGame(false);
 			}
 		}
 	}
+
+    private void EndGame(bool hasLost) {
+        currentState = GameState.EndGame;
+        cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+        StartCoroutine(waitTime(cameraMovementTime));
+        if (hasLost)
+            print("Perdeu");
+        else
+            print("Ganhou");
+
+        //Calculate score
+        float score = 0;
+
+        //Score due to capivaras health remaining
+        foreach (Capivara cap in capivaras)
+        {
+            Destructible dest = cap.GetComponent<Destructible>();
+            if (dest != null) {
+                score += remainingCapivarasHealthWeight * (dest.getActualLife() / dest.getMaxLife());
+            }
+
+        }
+
+        //TODO: calculate remaining money
+
+        //score due to remaining lives of buildings
+        GameObject[] destructibles = GameObject.FindGameObjectsWithTag("Destructible");
+        foreach (GameObject go in destructibles)
+        {
+            Destructible dest = go.GetComponent<Destructible>();
+            if (dest != null) {
+                if(dest.GetComponent<Capivara>() == null)
+                {
+                    score += remainingConstructionsWeight * (dest.getActualLife() / dest.getMaxLife());
+                    print("Adicionou score: " + score);
+                }
+            }
+        }
+
+
+        EndScreenHUD hud = GetComponentInChildren<EndScreenHUD>();
+        if(hud != null)
+        {
+            int roundedScore = (int)score;
+            hud.endGame(hasLost, roundedScore);
+        }
+
+    }
 
 	private IEnumerator waitTime(float finishTime) {
 		float currentTime = 0;
@@ -213,6 +263,10 @@ public class AttackSchedule : MonoBehaviour {
 
 	public void removeCapivara(Capivara cap) {
 		capivaras.Remove(cap);
+        if(capivaras.Count < 1)
+        {
+            EndGame(true);
+        }
 	}
 
 	public List<Capivara> getCapivaras() {
