@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxLife: 100
   _ActualLife: 100
+  _DamageThreshold: 10
 --- !u!212 &212112093944808826
 SpriteRenderer:
   m_ObjectHideFlags: 1

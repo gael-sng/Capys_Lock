@@ -30,6 +30,12 @@ public class PseudoBlock: MonoBehaviour {
 	public void _Select(){
 		_MyState = _PseudoStates.Selected;
 		_Destination = transform.position;
+		if (Input.touchCount == 1) {
+			Touch touch = Input.GetTouch(0);
+			Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
+
+			_RelativePosition = transform.position - touchPosition;
+		}
 		_UI.SetActive (false);
 	}
 
@@ -52,11 +58,11 @@ public class PseudoBlock: MonoBehaviour {
 
 	void _Move(){
 		if (Input.touchCount == 1  && Input.GetTouch(0).fingerId == 0){
-			Touch touch = Input.GetTouch(0); // get first touch since touch count is greater than zero
+			Touch touch = Input.GetTouch(0);
 			Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, 0));
 			if(touch.phase == TouchPhase.Began) 
 				_RelativePosition =  transform.position - touchPosition;
-			if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved){
+			if (touch.phase == TouchPhase.Moved){
 				_Destination = touchPosition + _RelativePosition;
 			}
 			transform.position = _MakeSnap(_Destination);

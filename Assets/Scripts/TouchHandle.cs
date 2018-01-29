@@ -12,7 +12,7 @@ public class TouchHandle : MonoBehaviour {
 	private Touch _ActualTouch;
 	[SerializeField] float _HoldMaxTime = 0.3f;
 	[SerializeField] float _HoldMinTime = 0.1f;
-	// Use this for initialization
+
 	void Start () {
 		_TimeCount = -1;
 	}

@@ -18,6 +18,8 @@ public class SpawButton : MonoBehaviour {
 		//adicionando o componente pseudoblock do novo objeto spawnado na lsita do PseudoHandle para mais tarde ele dar play nesses objetos
 		GameObject G = Instantiate (_ObjectToSpawn);
 		G.transform.position = Vector3.zero;
+		G.tag = "Destructible";
+
 		PseudoBlock P = G.GetComponent<PseudoBlock> ();
 		if (UI != null) P._SetUI (UI);
 		_TouchHandle._SelectBlock (G.GetComponent<Collider2D>());
