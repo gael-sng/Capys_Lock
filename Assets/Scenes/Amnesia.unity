@@ -1302,13 +1302,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1cecb3c53cd6049861c29b7af0ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackOrder: 0000000001000000020000000300000004000000
-  AttackTargets: 0000000000000000000000000000000000000000
+  AttackOrder: 000000000300000000000000
+  AttackTargets: 000000000000000000000000
   isAtRight: 0
   DistanceBetweenAttackers: 5
   AirstrikeVerticalDistance: 10
   cameraMovementTime: 1
   projectileOvertime: 0.5
+  showWaitTime: 3
   attackPosition: {fileID: 245419610}
   cameraEnemyPosition: {fileID: 1259723426}
   cameraBuildPosition: {fileID: 1039608792}
@@ -1325,7 +1326,7 @@ MonoBehaviour:
   remainingCapivarasHealthWeight: 100
   remainingMoneyWeight: 0
   remainingConstructionsWeight: 10
-  currentState: 1
+  currentState: 0
 --- !u!1 &1027667906
 GameObject:
   m_ObjectHideFlags: 0

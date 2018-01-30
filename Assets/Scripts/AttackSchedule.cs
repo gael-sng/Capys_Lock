@@ -40,6 +40,7 @@ public class AttackSchedule : MonoBehaviour {
 
     public float cameraMovementTime = 1f;
     public float projectileOvertime = 0.5f;
+    public float showWaitTime = 3f;
 
     [Header("Scene references")]
 	public Transform attackPosition;
@@ -66,7 +67,7 @@ public class AttackSchedule : MonoBehaviour {
 	private Transform lastProjectile;
 
 	CameraMovement cameraScript;
-	public GameState currentState = GameState.Building;
+	public GameState currentState = GameState.ShowingEnemies;
 
 	private List<Capivara> capivaras;
 
@@ -118,6 +119,15 @@ public class AttackSchedule : MonoBehaviour {
                 Vector3 scale = enemySpawned.transform.localScale;
                 scale.x *= -1;
                 enemySpawned.transform.localScale = scale;
+            }
+
+            if (currentState == GameState.ShowingEnemies)
+            {
+                //cameraScript.goToLocation(cameraEnemyPosition.position, 0.1f);
+                Vector3 dest = cameraEnemyPosition.position;
+                dest.z = -10;
+                cameraScript.transform.position = dest;
+                StartCoroutine(waitTime(showWaitTime));
             }
 		}
 
@@ -217,6 +227,11 @@ public class AttackSchedule : MonoBehaviour {
                 EndGame(false);
 			}
 		}
+        else if(currentState == GameState.ShowingEnemies)
+        {
+            cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+            currentState = GameState.Building;
+        }
 	}
 
     private void EndGame(bool hasLost) {
