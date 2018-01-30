@@ -32,11 +32,11 @@ public class AttackSchedule : MonoBehaviour {
 	public AttackType[] AttackOrder;
 	//Attack target
 	public AttackTarget[] AttackTargets;
+    public bool isAtRight = false;
 	[Header("Cosmedic")]
 	//Distance between attackers
-	public float DistanceBetweenAttackers = 1f;
-	public float AirstrikeVerticalDistance = 100f;
-	public float deltaTime = 0.1f;
+	public float DistanceBetweenAttackers = 5f;
+	public float AirstrikeVerticalDistance = 10f;
 
     public float cameraMovementTime = 1f;
     public float projectileOvertime = 0.5f;
@@ -80,7 +80,11 @@ public class AttackSchedule : MonoBehaviour {
 		currentEnemy = 0;
 		enemyLine = new List<GameObject>();
 		int i = 0;
+
+
 		Vector3 distancing = new Vector3 (DistanceBetweenAttackers,0,0);
+        if (isAtRight)
+            distancing.x *= -1;
 		foreach(AttackType a in AttackOrder){
 			GameObject enemySpawned;
 			switch (a)
@@ -96,7 +100,11 @@ public class AttackSchedule : MonoBehaviour {
 					break;
 				case AttackType.Airstrike:
 					enemySpawned = GameObject.Instantiate(AirstrikePrefab, attackPosition.position - distancing * i, Quaternion.identity, attackPosition);
-					break;
+                    if (isAtRight) {
+                        PlaneShot planeScript = enemySpawned.GetComponent<PlaneShot>();
+                        planeScript.horizontalSpeed *= -1;
+                    }
+                    break;
 				case AttackType.Napalm:
 					enemySpawned = GameObject.Instantiate(NapalmPrefab, attackPosition.position - distancing * i, Quaternion.identity, attackPosition);
 					break;
@@ -106,7 +114,13 @@ public class AttackSchedule : MonoBehaviour {
 			}
 			enemyLine.Add(enemySpawned);
 			i++;
+            if (isAtRight) {
+                Vector3 scale = enemySpawned.transform.localScale;
+                scale.x *= -1;
+                enemySpawned.transform.localScale = scale;
+            }
 		}
+
 	}
 	
 	/// <summary>
@@ -116,6 +130,8 @@ public class AttackSchedule : MonoBehaviour {
 		if(currentEnemy != 0) {
 			Destroy(enemyLine[currentEnemy-1]);
 			Vector3 offset = new Vector3(DistanceBetweenAttackers,0,0);
+            if (isAtRight)
+                offset.x *= -1; 
 			for (int  i = currentEnemy; i < AttackOrder.Length; i++) {
 				enemyLine[i].transform.position += offset;
 			}
@@ -123,7 +139,7 @@ public class AttackSchedule : MonoBehaviour {
 	}
 
 	public bool nextAttack() {
-		advanceEnemyPostions();
+		//advanceEnemyPostions();
 
 		if (currentEnemy >= AttackOrder.Length) return false;
 
@@ -146,7 +162,9 @@ public class AttackSchedule : MonoBehaviour {
 		}
 		else if(AttackOrder[currentEnemy] == AttackType.Airstrike) {
 			Vector3 verticalOffset = new Vector3(0, AirstrikeVerticalDistance);
+            print("Is at: " + enemyLine[currentEnemy].transform.position);
 			enemyLine[currentEnemy].transform.position += verticalOffset;
+            print("Now at: " + enemyLine[currentEnemy].transform.position);
 			PlaneShot planeScript = enemyLine[currentEnemy].GetComponent<PlaneShot>();
 			if(planeScript == null) return false;
 			planeScript.AttackTarget(target);
@@ -189,6 +207,7 @@ public class AttackSchedule : MonoBehaviour {
 			}
 		}
 		else if(currentState == GameState.CameraFollowProjectile) {
+            advanceEnemyPostions();
 			if(currentEnemy < AttackOrder.Length) {
 				currentState = GameState.CameraMovementToEnemie;
 				cameraScript.goToLocation(cameraEnemyPosition.position, cameraMovementTime);

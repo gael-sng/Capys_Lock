@@ -9,7 +9,8 @@ public class AirMissile : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
-		myTransform = transform.Find("Sprite");
+        //myTransform = transform.Find("Sprite");
+        myTransform = transform;
 		rb2D = GetComponent<Rigidbody2D>();
 	}
 	
