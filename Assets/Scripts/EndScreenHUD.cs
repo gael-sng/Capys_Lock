@@ -8,6 +8,9 @@ public class EndScreenHUD : MonoBehaviour {
 
     public Text winText;
     public Text scoreText;
+    public Image imageRef;
+    public Sprite winImage;
+    public Sprite lostImage;
     public float scoreAnimationTime = 2;
     public int decimalPlaces = 5;
     public Color backGroundImage;
@@ -18,11 +21,17 @@ public class EndScreenHUD : MonoBehaviour {
     
     public void endGame(bool hasLost, int score) {
         panel.SetActive(true);
-        if (hasLost) {
+        if (hasLost)
+        {
             winText.text = lostMessage;
+            scoreText.transform.parent.gameObject.SetActive(false);
+            imageRef.sprite = lostImage;
         }
         else
+        {
             winText.text = winMessage;
+            imageRef.sprite = winImage;
+        }
 
         
         Image backImage = panel.GetComponent<Image>();
