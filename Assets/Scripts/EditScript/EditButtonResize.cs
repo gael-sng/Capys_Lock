@@ -5,7 +5,9 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class EditButtonResize : MonoBehaviour {
 	private RectTransform _transform;
-	// Use this for initialization
+    public bool useHeight = true;
+    
+    // Use this for initialization
 	void Start () {
 		_transform = GetComponent<RectTransform> ();
 	}
@@ -13,6 +15,10 @@ public class EditButtonResize : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float height = _transform.sizeDelta.y;
-		_transform.sizeDelta = new Vector2 (height, height);
-	}
+        float width = _transform.sizeDelta.x;
+        if (useHeight)
+		    _transform.sizeDelta = new Vector2 (height, height);
+        else
+            _transform.sizeDelta = new Vector2(width, width);
+    }
 }

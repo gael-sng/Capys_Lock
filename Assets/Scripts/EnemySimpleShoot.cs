@@ -10,7 +10,17 @@ public class EnemySimpleShoot : MonoBehaviour {
 
     public Vector3 target;
 
+    public Transform spawnPosition;
+
+    public Transform rotationTransform;
+
+    public bool shouldRotate;
+
     private Transform targetObj;
+
+    private Quaternion shootRotation = Quaternion.identity;
+
+    private bool isRight = false;
 
 	// Use this for initialization
 	void Start () {
@@ -43,11 +53,19 @@ public class EnemySimpleShoot : MonoBehaviour {
     /// <return> The gameobject of the projectile </return>
     public GameObject ShootAtTarget(Vector3 target) {
         //Instanciate projectile
-        GameObject proj = GameObject.Instantiate(shootPrefab, transform.position, Quaternion.identity,transform.parent);
-        Rigidbody2D rb2d = proj.GetComponent<Rigidbody2D>();
+        isRight = (target - transform.position).x < 0;
+
+
         //Convert position from touch to world
-        Vector2 newVelocity = calculateParabola(transform.position, target);
+        Transform toCalculate = (rotationTransform == null) ? transform : rotationTransform;
+        Vector2 newVelocity = calculateParabola(toCalculate.position, target);
+        rotateTranform(newVelocity);
+        newVelocity = calculateParabola(spawnPosition.position, target);
+
+        GameObject proj = GameObject.Instantiate(shootPrefab, spawnPosition.position, shootRotation, transform.parent);
+        Rigidbody2D rb2d = proj.GetComponent<Rigidbody2D>();
         rb2d.velocity = newVelocity;
+
         if (targetObj != null)
             targetObj.position = target;
         return proj;
@@ -65,5 +83,17 @@ public class EnemySimpleShoot : MonoBehaviour {
 
     public float getFlyTime() {
         return airTime;
+    }
+
+    private void rotateTranform(Vector2 direction) {
+        if (rotationTransform == null || !shouldRotate)
+            return;
+        float angle = Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
+        float projectTileAngle = -Mathf.Atan2(direction.y, Mathf.Abs(direction.x)) * Mathf.Rad2Deg;
+        if (isRight)
+            angle *= -1;
+        rotationTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+        shootRotation = Quaternion.Euler(new Vector3(0, 0, projectTileAngle));
+
     }
 }

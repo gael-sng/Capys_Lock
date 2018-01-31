@@ -32,13 +32,17 @@ public class AttackSchedule : MonoBehaviour {
 	public AttackType[] AttackOrder;
 	//Attack target
 	public AttackTarget[] AttackTargets;
+    public bool isAtRight = false;
 	[Header("Cosmedic")]
 	//Distance between attackers
-	public float DistanceBetweenAttackers = 1f;
-	public float AirstrikeVerticalDistance = 100f;
-	public float deltaTime = 0.1f;
+	public float DistanceBetweenAttackers = 5f;
+	public float AirstrikeVerticalDistance = 10f;
 
-	[Header("Scene references")]
+    public float cameraMovementTime = 1f;
+    public float projectileOvertime = 0.5f;
+    public float showWaitTime = 3f;
+
+    [Header("Scene references")]
 	public Transform attackPosition;
 	public Transform cameraEnemyPosition;
 	public Transform cameraBuildPosition;
@@ -51,10 +55,11 @@ public class AttackSchedule : MonoBehaviour {
 	public GameObject AirstrikePrefab;
 	public GameObject NapalmPrefab;
 
+    [Header("Pontuation")]
+    public float remainingCapivarasHealthWeight = 100;
+    public float remainingMoneyWeight = 0;
+    public float remainingConstructionsWeight = 0;
 
-	[Header("Cosmedic")]
-	public float cameraMovementTime = 1f;
-	public float projectileOvertime = 0.5f;
 
 	//
 	private List<GameObject> enemyLine;
@@ -62,7 +67,7 @@ public class AttackSchedule : MonoBehaviour {
 	private Transform lastProjectile;
 
 	CameraMovement cameraScript;
-	public GameState currentState = GameState.Building;
+	public GameState currentState = GameState.ShowingEnemies;
 
 	private List<Capivara> capivaras;
 
@@ -76,7 +81,11 @@ public class AttackSchedule : MonoBehaviour {
 		currentEnemy = 0;
 		enemyLine = new List<GameObject>();
 		int i = 0;
+
+
 		Vector3 distancing = new Vector3 (DistanceBetweenAttackers,0,0);
+        if (isAtRight)
+            distancing.x *= -1;
 		foreach(AttackType a in AttackOrder){
 			GameObject enemySpawned;
 			switch (a)
@@ -92,7 +101,11 @@ public class AttackSchedule : MonoBehaviour {
 					break;
 				case AttackType.Airstrike:
 					enemySpawned = GameObject.Instantiate(AirstrikePrefab, attackPosition.position - distancing * i, Quaternion.identity, attackPosition);
-					break;
+                    if (isAtRight) {
+                        PlaneShot planeScript = enemySpawned.GetComponent<PlaneShot>();
+                        planeScript.horizontalSpeed *= -1;
+                    }
+                    break;
 				case AttackType.Napalm:
 					enemySpawned = GameObject.Instantiate(NapalmPrefab, attackPosition.position - distancing * i, Quaternion.identity, attackPosition);
 					break;
@@ -102,7 +115,22 @@ public class AttackSchedule : MonoBehaviour {
 			}
 			enemyLine.Add(enemySpawned);
 			i++;
+            if (isAtRight) {
+                Vector3 scale = enemySpawned.transform.localScale;
+                scale.x *= -1;
+                enemySpawned.transform.localScale = scale;
+            }
+
+            if (currentState == GameState.ShowingEnemies)
+            {
+                //cameraScript.goToLocation(cameraEnemyPosition.position, 0.1f);
+                Vector3 dest = cameraEnemyPosition.position;
+                dest.z = -10;
+                cameraScript.transform.position = dest;
+                StartCoroutine(waitTime(showWaitTime));
+            }
 		}
+
 	}
 	
 	/// <summary>
@@ -112,6 +140,8 @@ public class AttackSchedule : MonoBehaviour {
 		if(currentEnemy != 0) {
 			Destroy(enemyLine[currentEnemy-1]);
 			Vector3 offset = new Vector3(DistanceBetweenAttackers,0,0);
+            if (isAtRight)
+                offset.x *= -1; 
 			for (int  i = currentEnemy; i < AttackOrder.Length; i++) {
 				enemyLine[i].transform.position += offset;
 			}
@@ -119,7 +149,7 @@ public class AttackSchedule : MonoBehaviour {
 	}
 
 	public bool nextAttack() {
-		advanceEnemyPostions();
+		//advanceEnemyPostions();
 
 		if (currentEnemy >= AttackOrder.Length) return false;
 
@@ -142,7 +172,9 @@ public class AttackSchedule : MonoBehaviour {
 		}
 		else if(AttackOrder[currentEnemy] == AttackType.Airstrike) {
 			Vector3 verticalOffset = new Vector3(0, AirstrikeVerticalDistance);
+            print("Is at: " + enemyLine[currentEnemy].transform.position);
 			enemyLine[currentEnemy].transform.position += verticalOffset;
+            print("Now at: " + enemyLine[currentEnemy].transform.position);
 			PlaneShot planeScript = enemyLine[currentEnemy].GetComponent<PlaneShot>();
 			if(planeScript == null) return false;
 			planeScript.AttackTarget(target);
@@ -185,18 +217,70 @@ public class AttackSchedule : MonoBehaviour {
 			}
 		}
 		else if(currentState == GameState.CameraFollowProjectile) {
+            advanceEnemyPostions();
 			if(currentEnemy < AttackOrder.Length) {
 				currentState = GameState.CameraMovementToEnemie;
 				cameraScript.goToLocation(cameraEnemyPosition.position, cameraMovementTime);
 				StartCoroutine(waitTime(cameraMovementTime));
 			}
-			else {
-				currentState = GameState.EndGame;
-				cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
-				StartCoroutine(waitTime(cameraMovementTime));
+			else {				
+                EndGame(false);
 			}
 		}
+        else if(currentState == GameState.ShowingEnemies)
+        {
+            cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+            currentState = GameState.Building;
+        }
 	}
+
+    private void EndGame(bool hasLost) {
+        currentState = GameState.EndGame;
+        cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+        StartCoroutine(waitTime(cameraMovementTime));
+        if (hasLost)
+            print("Perdeu");
+        else
+            print("Ganhou");
+
+        //Calculate score
+        float score = 0;
+
+        //Score due to capivaras health remaining
+        foreach (Capivara cap in capivaras)
+        {
+            Destructible dest = cap.GetComponent<Destructible>();
+            if (dest != null) {
+                score += remainingCapivarasHealthWeight * (dest.getActualLife() / dest.getMaxLife());
+            }
+
+        }
+
+        //TODO: calculate remaining money
+
+        //score due to remaining lives of buildings
+        GameObject[] destructibles = GameObject.FindGameObjectsWithTag("Destructible");
+        foreach (GameObject go in destructibles)
+        {
+            Destructible dest = go.GetComponent<Destructible>();
+            if (dest != null) {
+                if(dest.GetComponent<Capivara>() == null)
+                {
+                    score += remainingConstructionsWeight * (dest.getActualLife() / dest.getMaxLife());
+                    print("Adicionou score: " + score);
+                }
+            }
+        }
+
+
+        EndScreenHUD hud = GetComponentInChildren<EndScreenHUD>();
+        if(hud != null)
+        {
+            int roundedScore = (int)score;
+            hud.endGame(hasLost, roundedScore);
+        }
+
+    }
 
 	private IEnumerator waitTime(float finishTime) {
 		float currentTime = 0;
@@ -213,6 +297,10 @@ public class AttackSchedule : MonoBehaviour {
 
 	public void removeCapivara(Capivara cap) {
 		capivaras.Remove(cap);
+        if(capivaras.Count < 1)
+        {
+            EndGame(true);
+        }
 	}
 
 	public List<Capivara> getCapivaras() {

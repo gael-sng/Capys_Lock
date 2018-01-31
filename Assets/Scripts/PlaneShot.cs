@@ -35,8 +35,10 @@ public class PlaneShot : MonoBehaviour {
 		this.target = target;
 		float dy = (transform.position.y - target.y);
 		print("Dy="+dy);
+        print("Posicao: " + transform.position);
 		float airTime = Mathf.Sqrt(dy * 2 / -Physics2D.gravity.y );
 		throwPosition = target.x - horizontalSpeed * airTime;
+        print("Alvo: " + throwPosition);
 	}
 
 	private void Update() {
@@ -66,6 +68,6 @@ public class PlaneShot : MonoBehaviour {
 	}
 
 	public float getFlyTime(){
-		return Mathf.Abs(target.x - myTransform.position.x)/horizontalSpeed;
+		return (target.x - myTransform.position.x)/horizontalSpeed;
 	}
 }

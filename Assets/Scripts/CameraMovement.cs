@@ -40,7 +40,7 @@ public class CameraMovement : MonoBehaviour {
 	private Camera myCamera;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		myTransform = transform;
 		zOffset = new Vector3(0,0,myTransform.position.z);
 		myCamera = GetComponent<Camera>();
@@ -110,11 +110,14 @@ public class CameraMovement : MonoBehaviour {
 	}
 
 	public void goToLocation(Vector3 target, float timeInterval) {
-		goSpeed = (target - myTransform.position) / timeInterval;
-		goSpeed.z = 0;
-		goCurrentTime = timeInterval;
-		isGoAnimation = true;
-		shouldFollow = false;
+        if (target != null && myTransform != null)
+        {
+            goSpeed = (target - myTransform.position) / timeInterval;
+            goSpeed.z = 0;
+            goCurrentTime = timeInterval;
+            isGoAnimation = true;
+            shouldFollow = false;
+        }
 	}
 
 	public void targetPoint(Transform target) {
