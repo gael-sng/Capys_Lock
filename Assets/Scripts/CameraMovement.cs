@@ -70,8 +70,11 @@ public class CameraMovement : MonoBehaviour {
 		}
 
 		if(shouldFollow) {
-			myTransform.position = Vector3.SmoothDamp(myTransform.position, perpetualTarget.position + zOffset,
+			
+			Vector3 aux = Vector3.SmoothDamp(myTransform.position, (perpetualTarget.position ),
 			ref velocity, smoothTime, maxSpeed);
+			aux.z = -10f;
+			myTransform.position= aux;
 		}
 
 		if(enablePinchZoom && Input.touchCount > 1) {

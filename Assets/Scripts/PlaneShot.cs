@@ -49,7 +49,6 @@ public class PlaneShot : MonoBehaviour {
 			}
 		}
 		if(canFly && (Time.time - startTime) >= destroyTime) {
-			print("Destruiu. Tempo inicial: "+ startTime + " Tempo atual:" + Time.time);
 			Destroy(gameObject);
 		}
 		/* DEBUG

@@ -14,7 +14,6 @@ public class ExplosiveAmmo : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D other) {
-		print("Colidiu");
 		if(other.gameObject.tag.Equals("Destructible")) {
 			Collider2D[] hits;
 			hits = Physics2D.OverlapCircleAll(myTransform.position, explosionRange);

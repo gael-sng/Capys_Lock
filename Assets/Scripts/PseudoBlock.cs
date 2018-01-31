@@ -20,6 +20,7 @@ public class PseudoBlock: MonoBehaviour {
 		BoxCollider2D col = gameObject.GetComponent<BoxCollider2D> ();
 		col.isTrigger = false;
 		col.size = Vector2.one;
+		gameObject.tag = "Destructible";
 		this.enabled = false;
 	}
 
@@ -41,6 +42,7 @@ public class PseudoBlock: MonoBehaviour {
 
 	public void _UnSelect(){
 		_MyState = _PseudoStates.Unselected;
+		_Destination = transform.position;
 		_UI.SetActive (true);
 	}
 
