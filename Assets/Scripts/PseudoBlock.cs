@@ -19,7 +19,7 @@ public class PseudoBlock: MonoBehaviour {
 		gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
 		BoxCollider2D col = gameObject.GetComponent<BoxCollider2D> ();
 		col.isTrigger = false;
-		col.size = Vector2.one;
+		col.size = new Vector2(col.size.x + 0.1f, col.size.y + 0.1f);
 		gameObject.tag = "Destructible";
 		this.enabled = false;
 	}
@@ -80,11 +80,9 @@ public class PseudoBlock: MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll){
-		Debug.Log ("eu '" + gameObject.name + "' colidi com o '" + coll.gameObject.name + "'");
 		CollisionCount++;
 	}
 	void OnTriggerExit2D(Collider2D coll){
-		Debug.Log ("eu '" + gameObject.name + "' descolidi com o '" + coll.gameObject.name + "'");
 		CollisionCount--;
 	}
 }

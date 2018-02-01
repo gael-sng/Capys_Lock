@@ -482,17 +482,17 @@ Prefab:
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 223.23337
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
@@ -507,17 +507,17 @@ Prefab:
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 333.33337
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
@@ -532,17 +532,17 @@ Prefab:
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 443.4334
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
@@ -558,6 +558,36 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224943455614258220, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 213.33301
+      objectReference: {fileID: 0}
+    - target: {fileID: 224493345975205142, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 123.333984
+      objectReference: {fileID: 0}
+    - target: {fileID: 224145047903075898, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 111.11133
+      objectReference: {fileID: 0}
+    - target: {fileID: 224278709150755270, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 111.11133
+      objectReference: {fileID: 0}
+    - target: {fileID: 224472892068693448, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 220.83301
+      objectReference: {fileID: 0}
+    - target: {fileID: 224078164754336440, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 213.33301
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9, type: 2}
@@ -683,9 +713,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83be184ef48834e46b69b5080100431b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSchedule: {fileID: 0}
+  canStopAnimation: 0
   smoothTime: 0.5
   maxSpeed: 10
+  cameraZoomRecover: 2
   enablePinchZoom: 1
   minimumCameraSize: 5
   maximumCameraSize: 30
