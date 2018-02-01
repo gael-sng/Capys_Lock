@@ -6,6 +6,7 @@ public class TouchHandle : MonoBehaviour {
 	enum TouchState{Default, Selected};
 	private PseudoBlock _SelectedBlock;
 
+    public GameObject buttonRef;
 	private TouchState _MyTouchState = TouchState.Default;
 	private Touch _ActualTouch;
 
@@ -77,6 +78,8 @@ public class TouchHandle : MonoBehaviour {
 					if (_TimeCount >= 0 && _TimeCount <= _HoldMinTime && _SelectedBlock._CanUnSelect ()) {
 						_SelectedBlock._UnSelect ();
 						_MyTouchState = TouchState.Default;
+                        if (buttonRef != null)
+                            buttonRef.SetActive(false);
 					}
 					_TimeCount = -1;
 				}
@@ -92,5 +95,18 @@ public class TouchHandle : MonoBehaviour {
 		_SelectedBlock = BlockCollider.gameObject.GetComponent<PseudoBlock> ();
 		_SelectedBlock._Select ();
 		_MyTouchState = TouchState.Selected;
+        if (buttonRef != null)
+            buttonRef.SetActive(true);
 	}
+
+    public void _pressDeleteButton() {
+        if (_SelectedBlock != null) {
+            _SelectedBlock._UnSelect();
+            Destroy(_SelectedBlock.gameObject);
+            _SelectedBlock = null;
+            _MyTouchState = TouchState.Default;
+            if (buttonRef != null)
+                buttonRef.SetActive(false);
+        }
+    }
 }
