@@ -7,10 +7,9 @@ public class CameraMovement : MonoBehaviour {
 	private Transform myTransform;
 	private Vector3 zOffset;
 
-	//Reference for attackSchedule
-	public AttackSchedule attackSchedule;
 
-	//Persistent follow variables
+    //Persistent follow variables
+    public bool canStopAnimation = false;
 	public float smoothTime = 0.5f;
 	public float maxSpeed = 10f;
 	private Transform perpetualTarget;
@@ -18,7 +17,8 @@ public class CameraMovement : MonoBehaviour {
 	private bool shouldFollow;
 	private float squaredMaxVelocity;
 
-	//Follow variables
+    //Follow variables
+    public float cameraZoomRecover = 2f;
 	private bool isFollowingAnimation = false;
 	private float followCurrentTime = 0f;
 	private Transform followTimeTarget;
@@ -38,12 +38,14 @@ public class CameraMovement : MonoBehaviour {
 	private float initialCameraSize;
 	private float relativeInitialDistance = 0f;
 	private Camera myCamera;
+    private float startZoom;
 
 	// Use this for initialization
 	void Awake () {
 		myTransform = transform;
 		zOffset = new Vector3(0,0,myTransform.position.z);
 		myCamera = GetComponent<Camera>();
+        startZoom = myCamera.orthographicSize;
 	}
 	
 	// Update is called once per frame
@@ -53,6 +55,7 @@ public class CameraMovement : MonoBehaviour {
 				myTransform.position = Vector3.Lerp(myTransform.position, 
 					followTimeTarget.position + zOffset, Time.deltaTime * followSpeed);
 				followCurrentTime -= Time.deltaTime;
+                myCamera.orthographicSize = Mathf.Lerp(myCamera.orthographicSize, startZoom, Time.deltaTime * cameraZoomRecover);
 			}
 			else {
 				isFollowingAnimation = false;
@@ -63,7 +66,8 @@ public class CameraMovement : MonoBehaviour {
 			if(goCurrentTime > 0) {
 				myTransform.position += goSpeed * Time.deltaTime;
 				goCurrentTime -= Time.deltaTime;
-			}
+                myCamera.orthographicSize = Mathf.Lerp(myCamera.orthographicSize, startZoom, Time.deltaTime * cameraZoomRecover);
+            }
 			else {
 				isGoAnimation = false;
 			}
@@ -107,9 +111,9 @@ public class CameraMovement : MonoBehaviour {
 		followTimeTarget = target;
 		isFollowingAnimation = true;
 		shouldFollow = false;
-	}
+    }
 
-	public void goToLocation(Vector3 target, float timeInterval) {
+    public void goToLocation(Vector3 target, float timeInterval) {
         if (target != null && myTransform != null)
         {
             goSpeed = (target - myTransform.position) / timeInterval;
@@ -117,14 +121,18 @@ public class CameraMovement : MonoBehaviour {
             goCurrentTime = timeInterval;
             isGoAnimation = true;
             shouldFollow = false;
+            myCamera.orthographicSize = startZoom;
         }
 	}
 
 	public void targetPoint(Transform target) {
-		perpetualTarget = target;
-		velocity = Vector3.zero;
-		shouldFollow = true;
-		isFollowingAnimation = false;
-		isGoAnimation = false;
+        if (canStopAnimation || (!isGoAnimation && !isFollowingAnimation))
+        {
+            perpetualTarget = target;
+            velocity = Vector3.zero;
+            shouldFollow = true;
+            isFollowingAnimation = false;
+            isGoAnimation = false;
+        }
 	}
 }

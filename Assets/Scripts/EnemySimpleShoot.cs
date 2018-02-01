@@ -62,7 +62,9 @@ public class EnemySimpleShoot : MonoBehaviour {
         rotateTranform(newVelocity);
         newVelocity = calculateParabola(spawnPosition.position, target);
 
-        GameObject proj = GameObject.Instantiate(shootPrefab, spawnPosition.position, shootRotation, transform.parent);
+
+        Transform toSpawn = (rotationTransform == null) ? transform : spawnPosition;
+        GameObject proj = GameObject.Instantiate(shootPrefab, toSpawn.position, shootRotation, transform.parent);
         Rigidbody2D rb2d = proj.GetComponent<Rigidbody2D>();
         rb2d.velocity = newVelocity;
 
