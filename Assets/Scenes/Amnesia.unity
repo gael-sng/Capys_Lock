@@ -1061,25 +1061,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1550124906 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1114713593143276, guid: ff31ee18f77ba4742913ae5913e1d180,
-    type: 2}
-  m_PrefabInternal: {fileID: 549039509}
---- !u!114 &1550124912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1550124906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79a12741ba4ffe944bda57c9a8d5b994, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxExplosionForce: 10
-  maxExplosionDamage: 5
-  explosionRange: 20
 --- !u!1 &1603554405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,52 +1446,52 @@ Prefab:
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 280.07858
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -53.550003
       objectReference: {fileID: 0}
     - target: {fileID: 224639107524413208, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 87.100006
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 500.27863
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -53.550003
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 87.100006
       objectReference: {fileID: 0}
     - target: {fileID: 224074862143334820, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
@@ -1520,27 +1501,27 @@ Prefab:
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 390.1786
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -53.550003
       objectReference: {fileID: 0}
     - target: {fileID: 224584517359045692, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 87.100006
       objectReference: {fileID: 0}
     - target: {fileID: 224868737914922924, guid: d4cdc5910ac279c41ae5ff1d1dd99bd9,
         type: 2}
