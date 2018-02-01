@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawButton : MonoBehaviour {
 	[SerializeField] GameObject _ObjectToSpawn;
 	[SerializeField] GameObject UI;
+	[SerializeField] GameObject _MyPanel;
 	[SerializeField] bool _Vertical;
 	private PseudoHandle _PHandle;
 	private TouchHandle _TouchHandle;
@@ -27,6 +28,7 @@ public class SpawButton : MonoBehaviour {
 
 		PseudoBlock P = G.GetComponent<PseudoBlock> ();
 		if (UI != null) P._SetUI (UI);
+		_MyPanel.SetActive (false);
 		_TouchHandle._SelectBlock (G.GetComponent<Collider2D>());
 
 		_PHandle._PseudoBlockList.Add(P);
