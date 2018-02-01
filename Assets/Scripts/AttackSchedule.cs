@@ -70,10 +70,13 @@ public class AttackSchedule : MonoBehaviour {
 	public GameState currentState = GameState.ShowingEnemies;
 
 	private List<Capivara> capivaras;
+    private List<GameObject> explosivos;
+
 
 	private void Awake() {
 		cameraScript = Camera.main.GetComponent<CameraMovement>();
 		capivaras = new List<Capivara>();
+        explosivos = new List<GameObject>();
 	}
 
 	// Use this for initialization
@@ -191,6 +194,12 @@ public class AttackSchedule : MonoBehaviour {
 			for (int i = 0; i < capivaras.Count; i++) {
 				capivaras [i].StartPlay ();
 			}
+
+            //Activate physics for explosives
+            for (int i = 0; i < explosivos.Count; i++) {
+                Rigidbody2D rgb2d = explosivos[i].GetComponent<Rigidbody2D>();
+                rgb2d.gravityScale = 1;
+            }
 		}
 	}
 
@@ -306,5 +315,9 @@ public class AttackSchedule : MonoBehaviour {
 	public List<Capivara> getCapivaras() {
 		return capivaras;
 	}
+
+    public void addExplosive(GameObject explosive) {
+        explosivos.Add(explosive);
+    }
 
 }

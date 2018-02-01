@@ -6,9 +6,11 @@ using UnityEngine;
 public class Capivara : MonoBehaviour {
 
 	AttackSchedule attackSchedule;
+    Animator animator;
 
 	// Use this for initialization
 	void Start () {
+        animator = GetComponentInChildren<Animator>();
 		GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
 		attackSchedule = gameManager.GetComponent<AttackSchedule>();
 		attackSchedule.addCapivara(this);
@@ -24,5 +26,11 @@ public class Capivara : MonoBehaviour {
 		CircleCollider2D col = gameObject.GetComponent<CircleCollider2D> ();
 		col.isTrigger = false;
 		col.radius = 1;
+        startRolling();
 	}
+
+    public void startRolling() {
+        if(animator != null)
+            animator.SetTrigger("Roll");
+    }
 }
