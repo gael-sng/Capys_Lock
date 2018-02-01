@@ -5,9 +5,10 @@ using UnityEngine;
 public class SpawButton : MonoBehaviour {
 	[SerializeField] GameObject _ObjectToSpawn;
 	[SerializeField] GameObject UI;
-
+	[SerializeField] bool _Vertical;
 	private PseudoHandle _PHandle;
 	private TouchHandle _TouchHandle;
+
 	// Use this for initialization
 	void Start () {
 		_TouchHandle = FindObjectOfType<TouchHandle> ();
@@ -19,6 +20,9 @@ public class SpawButton : MonoBehaviour {
 		GameObject G = Instantiate (_ObjectToSpawn);
 		Vector3 aux = Camera.main.transform.position + (Vector3.up * 5);
 		aux.z = 0;
+		if (_Vertical) {
+			G.transform.eulerAngles = new Vector3 (0f, 0f, 90f);
+		}
 		G.transform.position = aux;
 
 		PseudoBlock P = G.GetComponent<PseudoBlock> ();
