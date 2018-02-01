@@ -16,7 +16,8 @@ public class PseudoHandle : MonoBehaviour {
 
 	public void _StartSimulation (){
 		for (int i = 0; i < _PseudoBlockList.Count; i++) {
-			_PseudoBlockList [i].StartPlay();
+            if(_PseudoBlockList[i] != null)
+			    _PseudoBlockList [i].StartPlay();
 		}
 
 		_PseudoBlockList.RemoveAll (RemoveAllPredicate);
