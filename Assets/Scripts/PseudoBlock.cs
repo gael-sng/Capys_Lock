@@ -77,9 +77,15 @@ public class PseudoBlock: MonoBehaviour {
 
 	Vector3 _MakeSnap(Vector3 pos){
 		//Arredondando a posição;
-		
-		float newX = (float)( (Math.Round(pos.x))) + (_myColl.size.x + 0.1f)/2 - 0.5f;
-		float newY = (float)( (Math.Round(pos.y))) + (_myColl.size.y + 0.1f)/2 - 0.5f;
+		float newX;
+		float newY;
+		if (transform.rotation.eulerAngles.z >= 1) {
+			newX = (float)((Math.Round (pos.x))) + (_myColl.size.y + 0.1f) / 2 - 0.5f;
+			newY = (float)((Math.Round (pos.y))) + (_myColl.size.x + 0.1f) / 2 - 0.5f;
+		} else {
+			newX = (float)((Math.Round (pos.x))) + (_myColl.size.x + 0.1f) / 2 - 0.5f;
+			newY = (float)((Math.Round (pos.y))) + (_myColl.size.y + 0.1f) / 2 - 0.5f;
+		}
 
 		return new Vector3 (newX, newY, pos.z);
 	}
