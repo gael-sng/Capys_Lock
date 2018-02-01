@@ -245,7 +245,9 @@ public class AttackSchedule : MonoBehaviour {
 
     private void EndGame(bool hasLost) {
         currentState = GameState.EndGame;
-        cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+		if (cameraBuildPosition == null)
+			return;
+		cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
         StartCoroutine(waitTime(cameraMovementTime));
         if (hasLost)
             print("Perdeu");

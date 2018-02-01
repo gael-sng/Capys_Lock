@@ -2,24 +2,28 @@
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(BoxCollider2D))]
 
 public class PseudoBlock: MonoBehaviour {
 	enum _PseudoStates {Selected, Unselected};
 
 	[SerializeField] _PseudoStates _MyState = _PseudoStates.Unselected;
 
+	private BoxCollider2D _myColl;
 	private GameObject _UI;
 	private Vector3 _Destination;
 	private Vector3 _RelativePosition;
 	private int CollisionCount = 0;
 
+	void Start () {
+		_myColl = gameObject.GetComponent<BoxCollider2D> ();
+	}
+
 	public void StartPlay(){
 		GetComponent<Destructible> ().enabled = true;
 		gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
-		BoxCollider2D col = gameObject.GetComponent<BoxCollider2D> ();
-		col.isTrigger = false;
-		col.size = new Vector2(col.size.x + 0.1f, col.size.y + 0.1f);
+		_myColl.isTrigger = false;
+		_myColl.size = new Vector2(_myColl.size.x + 0.1f, _myColl.size.y + 0.1f);
 		gameObject.tag = "Destructible";
 		this.enabled = false;
 	}
@@ -73,8 +77,9 @@ public class PseudoBlock: MonoBehaviour {
 
 	Vector3 _MakeSnap(Vector3 pos){
 		//Arredondando a posição;
-		float newX = (float)( (Math.Round(pos.x))) + transform.localScale.x/2 - 0.5f;
-		float newY = (float)( (Math.Round(pos.y))) + transform.localScale.y/2 - 0.5f;
+		
+		float newX = (float)( (Math.Round(pos.x))) + (_myColl.size.x + 0.1f)/2 - 0.5f;
+		float newY = (float)( (Math.Round(pos.y))) + (_myColl.size.y + 0.1f)/2 - 0.5f;
 
 		return new Vector3 (newX, newY, pos.z);
 	}
