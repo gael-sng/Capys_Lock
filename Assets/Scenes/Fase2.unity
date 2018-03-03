@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1cecb3c53cd6049861c29b7af0ad8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackOrder: 00000000
+  AttackOrder: 0000000000000000
   AttackTargets: 0000000000000000000000000000000000000000
   isAtRight: 0
   DistanceBetweenAttackers: 5

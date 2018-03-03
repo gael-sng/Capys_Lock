@@ -532,7 +532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase7
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -1756,7 +1756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase5
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -1968,7 +1968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase12
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -2191,7 +2191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase1
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -2348,7 +2348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase3
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -3103,7 +3103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase11
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -3450,7 +3450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase4
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -3656,7 +3656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase9
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -3863,7 +3863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase10
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -4001,7 +4001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase6
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -4139,7 +4139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase2
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
@@ -5156,7 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8d4ac3c9e9c954d93b59eb3b3067fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _SceneNameToLoad: cartaz
+  _SceneNameToLoad: Fase8
   _WillQuit: 0
   Activate: {fileID: 0}
   Deactivate: {fileID: 0}
