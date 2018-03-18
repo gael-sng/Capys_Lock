@@ -162,6 +162,15 @@ public class FlexAttack : MonoBehaviour {
 
     }
 
+    public void skipAnimation()
+    {
+        if(currentState == GameState.ShowingEnemy || currentState == GameState.ShowingMovement){
+            currentState = GameState.Building;
+            StopAllCoroutines();
+            cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
+        }
+    }
+
     public void finishAnimation()
     {
         Debug.Log("Transição de estado: " + currentState.ToString());

@@ -135,4 +135,15 @@ public class CameraMovement : MonoBehaviour {
             isGoAnimation = false;
         }
 	}
+
+    public void addOffset(Vector2 direction)
+    {
+        Vector3 off = new Vector3(direction.x, direction.y, 0);
+        myTransform.position += off;
+    }
+
+    public void setPosition(Vector2 position) {
+        Vector3 pos = new Vector3(position.x, position.y, 0);
+        myTransform.position = pos + zOffset;
+    }
 }
