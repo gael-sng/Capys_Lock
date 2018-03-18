@@ -7,6 +7,7 @@ public class CameraMover : MonoBehaviour {
     private CameraMovement camScript;
     private Vector3 initialTouchPosition;
     private Vector3 initialCameraPosition;
+    private Vector3 screenInitialPosition;
 
     private void Start()
     {
@@ -17,19 +18,17 @@ public class CameraMover : MonoBehaviour {
     void Update () {
         if (Input.GetMouseButtonDown(0))
         {
-            initialTouchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            initialTouchPosition.z = 0;
+            screenInitialPosition = Input.mousePosition;
             initialCameraPosition = camScript.transform.position;
             initialCameraPosition.z = 0;
         }
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 currentPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            currentPosition.z = 0;
-            Vector3 offset = currentPosition - initialTouchPosition;
-            offset.z = 0;
-            Vector2 newCameraPosition = initialCameraPosition - offset;
+            Vector3 worldCurrentScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 worldInitialTouch = Camera.main.ScreenToWorldPoint(screenInitialPosition);
+            Vector3 delta = worldCurrentScreen - worldInitialTouch;
+            Vector2 newCameraPosition = initialCameraPosition - delta;
 
             camScript.setPosition(newCameraPosition);
         }
