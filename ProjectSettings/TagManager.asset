@@ -7,6 +7,7 @@ TagManager:
   - Destructible
   - GameManager
   - PseudoBlock
+  - SpawnTile
   layers:
   - Default
   - TransparentFX

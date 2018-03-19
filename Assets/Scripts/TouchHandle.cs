@@ -29,7 +29,7 @@ public class TouchHandle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.touchCount > 0 && Input.GetTouch (0).fingerId == 0) {
+		if ((Input.touchCount > 0 && Input.GetTouch (0).fingerId == 0)|| Input.GetMouseButton(0)) {
 			Touch touch = Input.GetTouch (0);
 			if(_MyTouchState == TouchState.Default){
 				Ray r = Camera.main.ScreenPointToRay (touch.position);
@@ -55,7 +55,7 @@ public class TouchHandle : MonoBehaviour {
 				Vector3 touchFinalPosition = Camera.main.ScreenToWorldPoint(new Vector3(touch.position.x, touch.position.y, Camera.main.nearClipPlane));
 				Vector3 deltaPosition = touchFinalPosition - touchInitialPosition;
 				deltaPosition.z = 0;
-				if (touch.phase == TouchPhase.Began){
+				if (touch.phase == TouchPhase.Began || Input.GetMouseButtonDown(0)){
 					_m_camera.targetPoint (_target);
 				}
 				if (touch.phase == TouchPhase.Moved){
