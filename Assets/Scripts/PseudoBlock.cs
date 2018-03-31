@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 [RequireComponent(typeof(BoxCollider2D))]
@@ -14,6 +15,18 @@ public class PseudoBlock: MonoBehaviour {
 	private Vector3 _Destination;
 	private Vector3 _RelativePosition;
 	private int CollisionCount = 0;
+
+	public List<SpawnTileBehaviour> _ListOfTiles;
+
+	void OnMouseUp(){
+		Debug.Log (gameObject.name + " MORRA");
+		for (int i = 0; i < _ListOfTiles.Count; i++) {
+			//_ListOfTiles [i]._IsOccupied = false;
+			_ListOfTiles [i].gameObject.SetActive (true);
+		}
+		Destroy (gameObject);
+
+	}
 
 	void Start () {
 		_myColl = gameObject.GetComponent<BoxCollider2D> ();

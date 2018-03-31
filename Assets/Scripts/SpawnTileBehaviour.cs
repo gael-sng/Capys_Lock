@@ -5,16 +5,17 @@ using UnityEngine;
 public class SpawnTileBehaviour : MonoBehaviour {
 	private SpriteRenderer _Sprite;
 	private SpawnGridBehaviour _SpawnGrid;
-
+	public bool _IsOccupied;
 	void Start () {
-		_Sprite = GetComponent<SpriteRenderer> ();
+		_IsOccupied = false;
+		_Sprite = gameObject.GetComponentInChildren<SpriteRenderer> ();
 		_SpawnGrid = transform.parent.GetComponent<SpawnGridBehaviour>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		//Verificar se o mouse esta arrastando em cima do botão
-		if(Input.GetMouseButtonUp(0))UnSelect();
+		//if(Input.GetMouseButtonUp(0))UnSelect();
 	}
 
 	void OnMouseDown(){
@@ -24,7 +25,7 @@ public class SpawnTileBehaviour : MonoBehaviour {
 
 	void OnMouseEnter(){
 		if (_SpawnGrid.IsSeleting()) {
-			Select ();
+				Select ();
 		}
 	}
 
@@ -35,11 +36,12 @@ public class SpawnTileBehaviour : MonoBehaviour {
 
 	private void Select(){
 		if (_SpawnGrid._SelectTile (this)) {
-			_Sprite.color = Color.gray;
+			_Sprite.color = new Color (0.5f, 0.5f, 0.5f, 0.5f);
 		}
 	}
 
-	private void UnSelect(){
-		_Sprite.color = Color.white;
+	public void UnSelect(){
+		_Sprite.color = new Color(1f,1f,1f,0.5f);
 	}
+
 }
