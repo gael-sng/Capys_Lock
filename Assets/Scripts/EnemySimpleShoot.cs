@@ -16,6 +16,9 @@ public class EnemySimpleShoot : MonoBehaviour {
 
     public bool shouldRotate;
 
+    [HideInInspector]
+    public Transform projectile;
+
     private Transform targetObj;
 
     private Quaternion shootRotation = Quaternion.identity;
@@ -67,6 +70,8 @@ public class EnemySimpleShoot : MonoBehaviour {
         GameObject proj = GameObject.Instantiate(shootPrefab, toSpawn.position, shootRotation, transform.parent);
         Rigidbody2D rb2d = proj.GetComponent<Rigidbody2D>();
         rb2d.velocity = newVelocity;
+
+        projectile = proj.transform;
 
         if (targetObj != null)
             targetObj.position = target;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CameraMovement : MonoBehaviour {
 
@@ -35,6 +36,7 @@ public class CameraMovement : MonoBehaviour {
 	public float minimumCameraSize = 5f;
 	public float maximumCameraSize = 20f;
 	public float zoomSpeed = 0.5f;
+    public Slider slider;
 	private float initialCameraSize;
 	private float relativeInitialDistance = 0f;
 	private Camera myCamera;
@@ -47,9 +49,19 @@ public class CameraMovement : MonoBehaviour {
 		myCamera = GetComponent<Camera>();
         startZoom = myCamera.orthographicSize;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void Start()
+    {
+        if (slider != null)
+        {
+            slider.minValue = minimumCameraSize;
+            slider.maxValue = maximumCameraSize;
+            slider.value = myCamera.orthographicSize;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
 		if(isFollowingAnimation) {
 			if(followCurrentTime > 0 && followTimeTarget != null) {
 				myTransform.position = Vector3.Lerp(myTransform.position, 
@@ -100,9 +112,18 @@ public class CameraMovement : MonoBehaviour {
 				newCameraSize = Mathf.Clamp(newCameraSize, minimumCameraSize, maximumCameraSize);
 
 				myCamera.orthographicSize = newCameraSize;
+                if(slider != null)
+                {
+                    slider.value = newCameraSize;
+                }
 				
 			}
 		}
+
+        if(slider != null)
+        {
+            myCamera.orthographicSize = slider.value;
+        }
 
 	}
 
@@ -135,4 +156,15 @@ public class CameraMovement : MonoBehaviour {
             isGoAnimation = false;
         }
 	}
+
+    public void addOffset(Vector2 direction)
+    {
+        Vector3 off = new Vector3(direction.x, direction.y, 0);
+        myTransform.position += off;
+    }
+
+    public void setPosition(Vector2 position) {
+        Vector3 pos = new Vector3(position.x, position.y, 0);
+        myTransform.position = pos + zOffset;
+    }
 }

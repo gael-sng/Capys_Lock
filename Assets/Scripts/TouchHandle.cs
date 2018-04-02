@@ -16,8 +16,9 @@ public class TouchHandle : MonoBehaviour {
 	[SerializeField] float _HoldMaxTime = 0.3f;
 	[SerializeField] float _HoldMinTime = 0.1f;
 	[SerializeField] float _MaxDistToMove = 10f;
+    [SerializeField] float _CoeficientMovement = 0.75f;
 
-	private CameraMovement _m_camera;
+    private CameraMovement _m_camera;
 	private Vector3 _RelativePosition;
 	private Transform _target;
 	void Start () {
@@ -59,7 +60,7 @@ public class TouchHandle : MonoBehaviour {
 					_m_camera.targetPoint (_target);
 				}
 				if (touch.phase == TouchPhase.Moved){
-					_target.position -= deltaPosition; //touchPosition + _RelativePosition;
+					_target.position -= deltaPosition * _CoeficientMovement; //touchPosition + _RelativePosition;
 				}
 			}else if(_MyTouchState == TouchState.Selected){
 

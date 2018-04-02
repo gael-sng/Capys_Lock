@@ -18,7 +18,11 @@ public class ExplosiveBlock : MonoBehaviour {
     {
         GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
         AttackSchedule attack = gameManager.GetComponent<AttackSchedule>();
-        attack.addExplosive(gameObject);
+        if(attack != null)
+            attack.addExplosive(gameObject);
+        FlexAttack flexAttack = gameManager.GetComponent<FlexAttack>();
+        if (flexAttack != null)
+            flexAttack.addExplosive(gameObject);
         Rigidbody2D rb2d = GetComponent<Rigidbody2D>();
         rb2d.gravityScale = 0;
     }

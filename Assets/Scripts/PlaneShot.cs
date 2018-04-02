@@ -26,6 +26,9 @@ public class PlaneShot : MonoBehaviour {
 	}
 
 	public void AttackTarget(Vector3 target) {
+        Vector3 direction = target - transform.position;
+        if (direction.x < 0)
+            horizontalSpeed *= -1;
 		rb2D.velocity = new Vector2(horizontalSpeed,0);
 		startTime = Time.time;
 		calculateThrow(target);
