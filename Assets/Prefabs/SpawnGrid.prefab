@@ -2201,6 +2201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114159591383607106
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2212,6 +2213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114164650836589732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2223,6 +2225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114174441386361696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2234,6 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114200385649611178
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2245,6 +2249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114220142046473412
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2256,6 +2261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114289190631430282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2267,6 +2273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114320300651680726
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2278,6 +2285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114481655687497942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2289,6 +2297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114482633566405114
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2300,6 +2309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114546495678831370
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2311,6 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114592922140123324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2322,6 +2333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114599036407859032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2333,6 +2345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114600392980461438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2344,6 +2357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114643928345426392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2355,6 +2369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114661150514114214
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2366,6 +2381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114663583449543356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2377,6 +2393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114706806782785168
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2388,6 +2405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114759361245053218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2399,6 +2417,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114775472652378968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2410,6 +2429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114841715221019038
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2421,6 +2441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114870850960476560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2432,6 +2453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114914504503722886
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2443,6 +2465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114941062956507312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2454,6 +2477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!114 &114946289031087610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2483,6 +2507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e93f88d8c15ea4fbfa18ff3beb098a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _IsOccupied: 0
 --- !u!212 &212105174879096154
 SpriteRenderer:
   m_ObjectHideFlags: 1

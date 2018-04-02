@@ -29,7 +29,7 @@ public class TouchHandle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if ((Input.touchCount > 0 && Input.GetTouch (0).fingerId == 0)|| Input.GetMouseButton(0)) {
+		if ((Input.touchCount > 0 && Input.GetTouch (0).fingerId == 0)) {
 			Touch touch = Input.GetTouch (0);
 			if(_MyTouchState == TouchState.Default){
 				Ray r = Camera.main.ScreenPointToRay (touch.position);

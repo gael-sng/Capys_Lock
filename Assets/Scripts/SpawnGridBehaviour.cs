@@ -127,7 +127,7 @@ public class SpawnGridBehaviour : MonoBehaviour {
 		Debug.Log("Spawnar " + _ListOfBlocks[Blockindex].name + " na posição x=" + meanX + " y=" + meanY +" na " + sentido);
 
 
-		PseudoBlock block = Instantiate (_ListOfBlocks [Blockindex], transform).GetComponent<PseudoBlock>();
+		PseudoBlock block = Instantiate (_ListOfBlocks [Blockindex]).GetComponent<PseudoBlock>();
 		block.transform.position = new Vector3 (meanX,meanY,0);
 		if (WillRotate)	block.transform.Rotate (0, 0, 90f);
 		for (int i = 0; i < _SelectedTiles.Count; i++) {

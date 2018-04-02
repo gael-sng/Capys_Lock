@@ -16,6 +16,9 @@ public class PseudoBlock: MonoBehaviour {
 	private Vector3 _RelativePosition;
 	private int CollisionCount = 0;
 
+	private PseudoHandle _PHandle;
+
+
 	public List<SpawnTileBehaviour> _ListOfTiles;
 
 	void OnMouseUp(){
@@ -30,6 +33,8 @@ public class PseudoBlock: MonoBehaviour {
 
 	void Start () {
 		_myColl = gameObject.GetComponent<BoxCollider2D> ();
+		_PHandle = FindObjectOfType<PseudoHandle> ();
+		_PHandle._PseudoBlockList.Add(this);
 	}
 
 	public void StartPlay(){
