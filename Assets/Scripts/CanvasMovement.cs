@@ -5,16 +5,26 @@ using UnityEngine;
 public class CanvasMovement : MonoBehaviour {
 	public GameObject button;
 	public GameObject panel;
-	private int isShowing;
-	private Vector2 buttonShowingposition = new Vector2 (145.8881f,98f) ;
-	private Vector2 panelShowingposition =  new Vector2 (265f, 0f) ;
-	private Vector2 buttonNOTShowingposition = new Vector2 (335.6779f,98f) ;
-	private Vector2 panelNOTShowingposition = new Vector2 (454.7898f,0f) ;
-	private float rangepanel;
-	private float rangebutton;
+	private float veloc;
+	private Vector2 buttonShowingposition ;
+	private Vector2 panelShowingposition ;
+	private Vector2 buttonNOTShowingposition ;
+	private Vector2 panelNOTShowingposition ;
+	private bool flag;
+	//private float rangepanel;
+	//private float rangebutton;
 	// Use this for initialization
 	void Start () {
-		isShowing = 0;
+		flag = true;
+		veloc = 100f * Time.deltaTime;
+		buttonShowingposition =  
+			new Vector2(GameObject.Find("BtnFROMScrollListPosClicked").transform.position.x,GameObject.Find("BtnFROMScrollListPosClicked").transform.position.y);
+		panelShowingposition =  
+			new Vector2(GameObject.Find("BtnScrollListPosClicked").transform.position.x,GameObject.Find("BtnScrollListPosClicked").transform.position.y);
+		buttonNOTShowingposition =  
+			new Vector2(GameObject.Find("BtnFROMScrollListPosUnclicked").transform.position.x,GameObject.Find("BtnFROMScrollListPosUnclicked").transform.position.y );
+		panelNOTShowingposition =  
+			new Vector2(GameObject.Find("BtnScrollListPosUnclicked").transform.position.x, GameObject.Find("BtnScrollListPosUnclicked").transform.position.y);
 	}
 	
 	// Update is called once per frame
@@ -23,26 +33,28 @@ public class CanvasMovement : MonoBehaviour {
 	}
 
 	public void Click(){
-		rangebutton = Vector2.Distance(buttonNOTShowingposition, buttonShowingposition);
-		rangepanel = Vector2.Distance(panelNOTShowingposition, panelShowingposition);
-		if (panel.Equals (panelNOTShowingposition) && button.Equals (buttonNOTShowingposition)) {
-			//isShowing = 1;
-			panel.transform.position = 
-				Vector2.MoveTowards (panel.transform.position, panelShowingposition, rangepanel * 0.5f * Time.deltaTime);
-			button.transform.position = 
-				Vector2.MoveTowards (button.transform.position, buttonShowingposition, rangebutton * 0.5f * Time.deltaTime);
-			
+		print (flag);
 
-		} else {
-			panel.transform.position = 
-				Vector2.MoveTowards (panel.transform.position, panelNOTShowingposition, rangepanel * 0.5f * Time.deltaTime);
-			button.transform.position = 
-				Vector2.MoveTowards (button.transform.position, buttonNOTShowingposition, rangebutton * 0.5f * Time.deltaTime);
-			
+		//rangebutton = Vector2.Distance(buttonNOTShowingposition, buttonShowingposition);
+		//rangepanel = Vector2.Distance(panelNOTShowingposition, panelShowingposition);
+		//if (panel.transform.position.x.Equals (panelNOTShowingposition.x) && button.transform.position.x.Equals (buttonNOTShowingposition.x)) {
+		if (flag == true){
+			flag = false;
+		//isShowing = 1;
+			//panel.transform.position = 
+			//	Vector2.MoveTowards (panel.transform.position, panelShowingposition, veloc * Time.deltaTime);
+			//button.transform.position = 
+			//	Vector2.MoveTowards (button.transform.position, buttonShowingposition, veloc * Time.deltaTime);
+			iTween.MoveTo(panel,panelShowingposition, veloc); 
+			iTween.MoveTo(button,buttonShowingposition, veloc);
+		} else if (flag == false) {
+			flag = true;
+			iTween.MoveTo(panel,panelNOTShowingposition, veloc); 
+			iTween.MoveTo(button,buttonNOTShowingposition, veloc);
+			//panel.transform.position = 
+			//	Vector2.MoveTowards (panel.transform.position, panelNOTShowingposition, veloc * Time.deltaTime);
+			//button.transform.position = 
+			//	Vector2.MoveTowards (button.transform.position, buttonNOTShowingposition, veloc * Time.deltaTime);
 		}
-
-
-	
 	}
-
 }
