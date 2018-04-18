@@ -5,6 +5,12 @@ using UnityEngine;
 public class SpawnGridBehaviour : MonoBehaviour {
 	[SerializeField] List<GameObject> _ListOfBlocks;
 
+	//Variaveis voltada para o controle de recursos disponiveis 
+		//(numero de blocos disponiveiws a serem utilizados)
+	[SerializeField] int _MaxNumberOfBlocks = 20;
+	private int _ActualNumberOfBlocks;
+
+
 	//Variaveis voltadas para a seleção da grid
 	[SerializeField] int _MaxNumberSelected = 4;
 	private bool _selecting;
@@ -12,13 +18,18 @@ public class SpawnGridBehaviour : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		_ActualNumberOfBlocks = 0;
 		_selecting = false;
 		_SelectedTiles = new List<SpawnTileBehaviour> ();
+		if (_MaxNumberSelected <= 0)
+			_MaxNumberSelected = 4;
+		if (_MaxNumberOfBlocks <= 0)
+			_MaxNumberOfBlocks = 20;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (_selecting && Input.GetMouseButtonUp (0)) {
+		if (_selecting && Input.GetMouseButtonUp (0) && _SelectedTiles.Count > 0) {
 			_TrySpawn ();
 			_ResetSelection ();
 		}
@@ -26,6 +37,10 @@ public class SpawnGridBehaviour : MonoBehaviour {
 
 	public bool IsSeleting(){
 		return _selecting;
+	}
+
+	public void DecressActualNumberOfBlocks(){
+		_ActualNumberOfBlocks--;
 	}
 
 	bool _TrySpawn(){
@@ -123,10 +138,6 @@ public class SpawnGridBehaviour : MonoBehaviour {
 		if(Blockindex < 0)return false;
 
 		//Spawnar um bloco valido
-		string sentido = (WillRotate? "Vertical" : "Horizontal");
-		Debug.Log("Spawnar " + _ListOfBlocks[Blockindex].name + " na posição x=" + meanX + " y=" + meanY +" na " + sentido);
-
-
 		PseudoBlock block = Instantiate (_ListOfBlocks [Blockindex]).GetComponent<PseudoBlock>();
 		block.transform.position = new Vector3 (meanX,meanY,0);
 		if (WillRotate)	block.transform.Rotate (0, 0, 90f);
@@ -135,14 +146,14 @@ public class SpawnGridBehaviour : MonoBehaviour {
 			//_SelectedTiles [i]._IsOccupied = true;
 			_SelectedTiles [i].gameObject.SetActive (false);
 		}
+		block._MyGrid = this;
+
+		//adicionando o numero de blocos a contagem de blocos
+		_ActualNumberOfBlocks += _SelectedTiles.Count;
 		return true;
 	}
 
 	public bool _SelectTile(SpawnTileBehaviour tile){
-		if (!IsSeleting ()) {
-			_selecting = true;
-		}
-
 		//verificar se não estou tentando selecionar uma tile que ja foi selecionada
 		if (_SelectedTiles.Contains (tile)) {
 			//se ja tiver selecionado, desselecioanr todas as selecionadas depois desta
@@ -153,10 +164,12 @@ public class SpawnGridBehaviour : MonoBehaviour {
 			}
 			return false; 
 		}
-
 		//Se for possivel adicionar então adicionar
-		if (_SelectedTiles.Count < _MaxNumberSelected) {
+		if (_SelectedTiles.Count < _MaxNumberSelected && _SelectedTiles.Count + _ActualNumberOfBlocks < _MaxNumberOfBlocks) {
 			_SelectedTiles.Add (tile);
+			if (!IsSeleting ()) {
+				_selecting = true;
+			}
 			return true;
 		}
 		return false;

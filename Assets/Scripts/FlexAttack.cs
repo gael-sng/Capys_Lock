@@ -114,13 +114,15 @@ public class FlexAttack : MonoBehaviour {
             int lowerIndex = -1;
             for(int i = 0; i < capivaras.Count; i++)
             {
-                Vector3 dif = capivaras[i].transform.position - enemyOrder[currentEnemy].transform.position;
-                float newDistance = dif.sqrMagnitude;
-                if (newDistance < lowerDistance)
-                {
-                    lowerDistance = newDistance;
-                    lowerIndex = i;
-                }
+				if (capivaras [i] != null) {
+					Vector3 dif = capivaras[i].transform.position - enemyOrder[currentEnemy].transform.position;
+					float newDistance = dif.sqrMagnitude;
+					if (newDistance < lowerDistance)
+					{
+						lowerDistance = newDistance;
+						lowerIndex = i;
+					}
+				}
             }
 
             target = capivaras[lowerIndex].transform.position;
