@@ -97,6 +97,10 @@ public class FlexAttack : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Função que começa o ataque
+    /// </summary>
+    /// <returns>Retorna se foi possível atacar</returns>
     public bool nextAttack()
     {
         Vector3 target = Vector3.zero;
@@ -106,6 +110,7 @@ public class FlexAttack : MonoBehaviour {
             if (capivaras.Count < 1)
             {
                 print("Não foi encontrado nenhum alvo");
+                EndGame(true);
                 return false;
             }
 
@@ -134,6 +139,9 @@ public class FlexAttack : MonoBehaviour {
         return true;
     }
 
+    /// <summary>
+    /// Função chamada quando o jogador pressiona o botão para começar o ataque
+    /// </summary>
     public void pressButton()
     {
         if(currentState == GameState.Building)
@@ -164,6 +172,9 @@ public class FlexAttack : MonoBehaviour {
 
     }
 
+    /// <summary>
+    /// Pula a animação inicial de mostrar os inimigos
+    /// </summary>
     public void skipAnimation()
     {
         if(currentState == GameState.ShowingEnemy || currentState == GameState.ShowingMovement){
@@ -173,30 +184,43 @@ public class FlexAttack : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Função chamada toda vez que o timer estora. O timer é chamado entre transições de camera
+    /// </summary>
     public void finishAnimation()
     {
         Debug.Log("Transição de estado: " + currentState.ToString());
-        //Nova lógica de mostrar inimigos
+        //Lógica de mostrar os inimigos. Se ainda tem inimigos que não foram mostrados, vai mover a camera até ele
         if(currentState == GameState.ShowingEnemy)
         {
+            //Enquanto ainda tiver atacantes não revelados
             if (showIndex < attackers.Count)
             {
+                //Estado de movimento de camera até o inimigo
                 currentState = GameState.ShowingMovement;
+                //Calcula posição da câmera onde está o inimigo
                 Vector3 offset = new Vector3(attackers[showIndex].cameraOffset.x, attackers[showIndex].cameraOffset.y, 0);
                 Vector3 position = attackers[showIndex].transform.position + offset;
                 cameraScript.goToLocation(position, cameraMovementTime);
+                //Começa o timer
                 StartCoroutine(waitTime(cameraMovementTime));
                 showIndex++;
             }
+            //Se não tem mais quem mostrar, mover a câmera para a posição inicial
             else
             {
                 currentState = GameState.Building;
                 cameraScript.goToLocation(cameraBuildPosition.position, cameraMovementTime);
             }
         }
+        //Se a camera terminou de mover até o inimigo, vai realizar a animação de mostra do inimigo
         else if(currentState == GameState.ShowingMovement)
         {
             currentState = GameState.ShowingEnemy;
+
+            //Indice foi alterado no estado anterior
+            attackers[showIndex-1].playShowAnimation();
+
             StartCoroutine(waitTime(waitOnEnemyTime));
         }
         else if(currentState == GameState.PlayerAnimation || currentState == GameState.CameraFollowProjectile)
@@ -341,7 +365,11 @@ public class FlexAttack : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-		
+		if(currentState == GameState.ShowingEnemy || currentState == GameState.ShowingMovement){
+            if(Input.GetMouseButtonDown(0)){
+                skipAnimation();
+            }
+        }
 	}
 }
 

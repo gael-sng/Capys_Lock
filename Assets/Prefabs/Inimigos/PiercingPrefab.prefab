@@ -67,6 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4644591658579308}
   - component: {fileID: 114354653497092384}
+  - component: {fileID: 114790821387938778}
   m_Layer: 0
   m_Name: PiercingPrefab
   m_TagString: Untagged
@@ -147,6 +148,26 @@ MonoBehaviour:
   spawnPosition: {fileID: 4340641823331670}
   rotationTransform: {fileID: 4644591658579308}
   shouldRotate: 1
+  projectile: {fileID: 0}
+--- !u!114 &114790821387938778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360325689322484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a18957abb1e2244993978b13be9def6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptAssociado: 1
+  targetType: 0
+  timeTillAnimation: 0.5
+  animationTime: 2
+  cameraOffset: {x: 0, y: 0}
+  AirstrikeVerticalDistance: 3
+  addedToArray: 1
+  flexAttack: {fileID: 0}
 --- !u!212 &212260529922588016
 SpriteRenderer:
   m_ObjectHideFlags: 1

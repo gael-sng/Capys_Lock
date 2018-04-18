@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4064893905827848}
   - component: {fileID: 114302812835308508}
   - component: {fileID: 50473974660130136}
+  - component: {fileID: 114547611272807150}
   m_Layer: 0
   m_Name: PlanePrefab
   m_TagString: Untagged
@@ -108,6 +109,25 @@ MonoBehaviour:
   throwPosition: 0
   destroyTime: 5
   target: {x: 0, y: 0, z: 0}
+--- !u!114 &114547611272807150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1915062320726288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a18957abb1e2244993978b13be9def6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptAssociado: 2
+  targetType: 0
+  timeTillAnimation: 0.5
+  animationTime: 2
+  cameraOffset: {x: 0, y: 0}
+  AirstrikeVerticalDistance: 3
+  addedToArray: 1
+  flexAttack: {fileID: 0}
 --- !u!212 &212175994080745622
 SpriteRenderer:
   m_ObjectHideFlags: 1

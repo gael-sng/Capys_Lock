@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Capivara : MonoBehaviour {
 
-	AttackSchedule attackSchedule;
     FlexAttack flexAttack;
     Animator animator;
 
@@ -13,16 +12,13 @@ public class Capivara : MonoBehaviour {
 	void Start () {
         animator = GetComponentInChildren<Animator>();
 		GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
-		attackSchedule = gameManager.GetComponent<AttackSchedule>();
-        if(attackSchedule != null)
-		    attackSchedule.addCapivara(this);
         flexAttack = gameManager.GetComponent<FlexAttack>();
         if (flexAttack != null)
             flexAttack.addCapivara(this);
 	}
 	
 	private void OnDestroy() {
-		attackSchedule.removeCapivara(this);
+		flexAttack.removeCapivara(this);
 	}
 
 	public void StartPlay(){
