@@ -35,6 +35,22 @@ public class SpawnGridBehaviour : MonoBehaviour {
 		}
 	}
 
+
+	public List<PseudoBlock> _PseudoBlockList;
+
+	public void _StartSimulation (){
+		for (int i = 0; i < _PseudoBlockList.Count; i++) {
+			if(_PseudoBlockList[i] != null)
+				_PseudoBlockList [i].StartPlay();
+		}
+
+		_PseudoBlockList.RemoveAll (RemoveAllPredicate);
+	}
+
+	bool RemoveAllPredicate(PseudoBlock p){
+		return true;
+	}
+
 	public bool IsSeleting(){
 		return _selecting;
 	}
@@ -139,6 +155,7 @@ public class SpawnGridBehaviour : MonoBehaviour {
 
 		//Spawnar um bloco valido
 		PseudoBlock block = Instantiate (_ListOfBlocks [Blockindex]).GetComponent<PseudoBlock>();
+		_PseudoBlockList.Add (block);
 		block.transform.position = new Vector3 (meanX,meanY,0);
 		if (WillRotate)	block.transform.Rotate (0, 0, 90f);
 		for (int i = 0; i < _SelectedTiles.Count; i++) {
