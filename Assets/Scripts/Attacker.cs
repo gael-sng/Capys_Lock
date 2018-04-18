@@ -56,6 +56,11 @@ public class Attacker : MonoBehaviour {
         {
             DestroyImmediate(gameObject);    
         }
+
+        //Verifica se o atacante está na lista, se não tiver, adiciona
+        updateFlexAttackRef();
+        if(!flexAttack.attackers.Contains(this))
+            flexAttack.attackers.Add(this);
     }
 
     public void setupAttack()
@@ -66,12 +71,26 @@ public class Attacker : MonoBehaviour {
         StartCoroutine(waitToBeginAnimation());
     }
 
+    /// <summary>
+    /// Realiza a animação de ataque do inimigo
+    /// </summary>
     private void playAttackAnimation()
     {
         //Logica de animacao
 
     }
 
+    /// <summary>
+    /// Realiza a animação de apresentação do inimigo
+    /// </summary>
+    public void playShowAnimation(){
+
+    }
+
+    /// <summary>
+    /// Função chamada para atacar o alvo na posição enviada
+    /// </summary>
+    /// <param name="target">Posição que o atacante deve atacar</param>
     public void attackTarget(Vector3 target)
     {
         if(scriptAssociado == ScriptAssoc.Shoot)
@@ -86,6 +105,10 @@ public class Attacker : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Tempo de espera até começar a animação de ataque
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator waitToBeginAnimation()
     {
         float counter = timeTillAnimation;
@@ -98,6 +121,10 @@ public class Attacker : MonoBehaviour {
         playAttackAnimation();
     }
 
+    /// <summary>
+    /// Atualiza referência do flex attack
+    /// </summary>
+    /// <returns>Retorna a referência do FlexAttack</returns>
     public FlexAttack updateFlexAttackRef()
     {
         GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
@@ -124,27 +151,6 @@ public class Attacker : MonoBehaviour {
             addedToArray = true;
             flexAttack.attackers.Add(this);
         }
-        ////Mudar a ordem
-        //else if (order != previous_order)
-        //{
-        //    if(order > flexAttack.attackers.Count)
-        //    {
-        //        previous_order = order = flexAttack.attackers.Count;
-        //        flexAttack.attackers.Remove(this);
-        //        flexAttack.attackers.Add(this);
-        //    }
-        //    else if(order > 0)
-        //    {
-        //        flexAttack.attackers.Remove(this);
-        //        flexAttack.attackers.Insert(order - 1, this);
-        //        previous_order = order;
-        //    }
-        //    else if(order < 1)
-        //    {
-        //        order = previous_order;
-        //    }
-        //    updateAll();
-        //}
 
         if(scriptAssociado == ScriptAssoc.Unknow)
         {
@@ -204,6 +210,7 @@ public class AttackerEditor : Editor
 
         reorderableList.displayAdd = false;
         reorderableList.onRemoveCallback += RemoveItem;
+
     }
 
     private void OnDisable()
