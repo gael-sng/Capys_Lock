@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class DataToSave : MonoBehaviour {
 	//public static int Dinheiro;
-
+	//public Text textvalue;
 	private int Number_Level = 1 ;
 	public GameObject[] Datas;
 	public static int[] Scores;
-
+	public static int Money;
 
 	void Awake(){
 		Datas = GameObject.FindGameObjectsWithTag ("DATA");
@@ -18,15 +18,38 @@ public class DataToSave : MonoBehaviour {
 		}
 		DontDestroyOnLoad (transform.gameObject);
 	}
-	void Start(){
-		for (int x = 0; x < Number_Level; x++) {
-			PlayerPrefs.SetInt("Scores"+ x, Scores[x]);
-				}
-		for (int x = 0; x < Number_Level; x++) {
-			Scores[x] =  PlayerPrefs.GetInt("Scores"+ x);
-		}
-				
-		}
+
+	public void SaveMoney(int value){
+		Money = value;
+		PlayerPrefs.SetInt ("Money", Money);
 
 	}
+	public int LoadMoney(){
+		if (PlayerPrefs.HasKey ("Money")) {
+			Money = PlayerPrefs.GetInt ("Money");
+		} else {
+			Money = 0;
+		}
+		return Money;
+	}
+		/*
+	void Start(){
+		if (PlayerPrefs.HasKey ("Money")) {
+			Money = PlayerPrefs.GetInt ("Money");
+			//textvalue = Money.ToString ();
+			print("Yes");
+		} else {
+			PlayerPrefs.SetInt ("Money", Money);
+		}
+
+		//for (int x = 0; x < Number_Level; x++) {
+		//	PlayerPrefs.SetInt("Scores"+ x, Scores[x]);
+		//		}
+		//for (int x = 0; x < Number_Level; x++) {
+		//	Scores[x] =  PlayerPrefs.GetInt("Scores"+ x);
+		//}
+				
+		}
+*/
 	
+}

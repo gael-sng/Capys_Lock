@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasMovement : MonoBehaviour {
 	public GameObject button;
@@ -11,10 +12,20 @@ public class CanvasMovement : MonoBehaviour {
 	private Vector2 buttonNOTShowingposition ;
 	private Vector2 panelNOTShowingposition ;
 	private bool flag;
+	private int MoneyValue;
+	public Text moneytextvalue;
+	public GameObject objectWithScript;
+
+
+
 	//private float rangepanel;
 	//private float rangebutton;
 	// Use this for initialization
 	void Start () {
+		print(DataToSave.Money);
+		MoneyValue = objectWithScript.GetComponent<DataToSave>().LoadMoney() ;
+
+		moneytextvalue.text =  DataToSave.Money.ToString ();
 		flag = true;
 		veloc = 100f * Time.deltaTime;
 		buttonShowingposition =  
@@ -33,8 +44,11 @@ public class CanvasMovement : MonoBehaviour {
 	}
 
 	public void Click(){
-		
-		print (flag);
+		MoneyValue = MoneyValue + 1;
+		moneytextvalue.text = MoneyValue.ToString ();
+		objectWithScript.GetComponent<DataToSave>().SaveMoney( MoneyValue ) ;
+		//print (DataToSave.Money);
+
 
 		//rangebutton = Vector2.Distance(buttonNOTShowingposition, buttonShowingposition);
 		//rangepanel = Vector2.Distance(panelNOTShowingposition, panelShowingposition);
