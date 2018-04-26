@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class DataToSave : MonoBehaviour {
 	//public static int Dinheiro;
+
 	private int Number_Level = 1 ;
 	public GameObject[] Datas;
 	public static int[] Scores;
 
+
 	void Awake(){
 		Datas = GameObject.FindGameObjectsWithTag ("DATA");
+
 		if (Datas.Length >= 2) {
 			Destroy (Datas [0]);
 		}

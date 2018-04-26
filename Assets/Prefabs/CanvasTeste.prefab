@@ -741,7 +741,7 @@ GameObject:
   - component: {fileID: 114938060603827140}
   - component: {fileID: 114122098034030290}
   m_Layer: 0
-  m_Name: Canvas
+  m_Name: CanvasTeste
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1546,6 +1546,7 @@ MonoBehaviour:
   decimalPlaces: 5
   backGroundImage: {r: 0, g: 0, b: 0, a: 0}
   panel: {fileID: 1838756803629472}
+  fasenumber: 0
   winMessage: You won
   lostMessage: You lost
 --- !u!114 &114126689099008178

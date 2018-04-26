@@ -33,6 +33,7 @@ public class CanvasMovement : MonoBehaviour {
 	}
 
 	public void Click(){
+		
 		print (flag);
 
 		//rangebutton = Vector2.Distance(buttonNOTShowingposition, buttonShowingposition);
