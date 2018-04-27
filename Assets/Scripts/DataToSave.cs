@@ -9,6 +9,7 @@ public class DataToSave : MonoBehaviour {
 	public GameObject[] Datas;
 	public static int[] Scores;
 	public static int Money;
+	public static int Volume;
 
 	void Awake(){
 		Datas = GameObject.FindGameObjectsWithTag ("DATA");
@@ -31,6 +32,19 @@ public class DataToSave : MonoBehaviour {
 			Money = 0;
 		}
 		return Money;
+	}
+	public void SaveVolume(int value){
+		Volume = value;
+		PlayerPrefs.SetInt ("Volume", Volume);
+
+	}
+	public int LoadVolume(){
+		if (PlayerPrefs.HasKey ("Volume")) {
+			Volume = PlayerPrefs.GetInt ("Volume");
+		} else {
+			Volume = 0;
+		}
+		return Volume;
 	}
 		/*
 	void Start(){

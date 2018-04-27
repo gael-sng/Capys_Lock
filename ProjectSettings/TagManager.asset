@@ -8,7 +8,7 @@ TagManager:
   - GameManager
   - PseudoBlock
   - SpawnTile
-  - DATA
+  - ZoonSlider
   layers:
   - Default
   - TransparentFX

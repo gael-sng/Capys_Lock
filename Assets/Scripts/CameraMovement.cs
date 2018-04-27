@@ -36,7 +36,7 @@ public class CameraMovement : MonoBehaviour {
 	public float minimumCameraSize = 5f;
 	public float maximumCameraSize = 20f;
 	public float zoomSpeed = 0.5f;
-    public Slider slider;
+	private Slider slider;
 	private float initialCameraSize;
 	private float relativeInitialDistance = 0f;
 	private Camera myCamera;
@@ -52,6 +52,7 @@ public class CameraMovement : MonoBehaviour {
 
     private void Start()
     {
+		slider = GameObject.FindObjectOfType<Slider> ();// ("ZoonSlider").GetComponent<Slider>();
         if (slider != null)
         {
             slider.minValue = minimumCameraSize;

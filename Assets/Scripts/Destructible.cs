@@ -5,13 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 
 public class Destructible : MonoBehaviour {
-	[SerializeField] float _MaxLife = 100;
+	[SerializeField] float _MaxLife;
 	[SerializeField] float _ActualLife;
-	[SerializeField] float _DamageThreshold = 10;
-
+	[SerializeField] float _DamageThreshold;
+	private Rigidbody2D _mRigid;
 	void Start () {
+		//parte que calcula a massa e a vida da tabua proporcionalmente ao tamanho da madeira
+		if (name.Contains ("madeira")) {
+			_mRigid = GetComponent<Rigidbody2D> ();
+			_MaxLife *= (int)char.GetNumericValue (name [7]) * (int)char.GetNumericValue(name[9]);
+			_mRigid.mass *= (int)char.GetNumericValue (name [7]) * (int)char.GetNumericValue(name[9]);
+		}
+		if (_MaxLife <= 0)
+			_MaxLife = 100;
 		_ActualLife = _MaxLife;
-		
 	}
 
 	public void TakeDamage(float damage){
@@ -31,10 +38,13 @@ public class Destructible : MonoBehaviour {
     }
 
 	void OnCollisionEnter2D(Collision2D coll){
-		if (coll.gameObject.tag == "Destructible") {
+		if (gameObject.CompareTag("Destructible")) {
 			// Aplicando dano, forma ainda não final
-			float damage = coll.relativeVelocity.magnitude * coll.rigidbody.mass;
-			if(damage > _DamageThreshold)coll.gameObject.GetComponent<Destructible> ().TakeDamage (damage);
+			float damage = coll.relativeVelocity.magnitude;
+			if (damage > _DamageThreshold) {
+				if(gameObject.name.Contains("madeira"))Debug.Log (coll.otherCollider.name + " other:" + coll.collider.name + " relativeVelocity:" + coll.relativeVelocity.magnitude);
+				TakeDamage (damage);			
+			}
 		}
 	}
 	// Update is called once per frame
