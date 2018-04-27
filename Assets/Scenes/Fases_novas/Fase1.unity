@@ -2579,6 +2579,48 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &267958598
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 394.41696
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 170.2135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.898878
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4623462760603340, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 11af5183721f64457af80c6601aa773a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &268510196
 GameObject:
   m_ObjectHideFlags: 0
@@ -3421,6 +3463,12 @@ Prefab:
       propertyPath: slider
       value: 
       objectReference: {fileID: 1386778178}
+    - target: {fileID: 82985799165163422, guid: b03bcc6054ecf0e4d81aabca44aa8aef,
+        type: 2}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 24300002, guid: 89672f135a6414253b3c1f1c031caddc,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b03bcc6054ecf0e4d81aabca44aa8aef, type: 2}
   m_IsPrefabParent: 0
@@ -9222,6 +9270,7 @@ MonoBehaviour:
   decimalPlaces: 5
   backGroundImage: {r: 0, g: 0, b: 0, a: 0.39215687}
   panel: {fileID: 1636704538}
+  fasenumber: 0
   winMessage: You won
   lostMessage: You lost
 --- !u!114 &1109771005
@@ -9685,17 +9734,17 @@ Prefab:
     - target: {fileID: 224364192486888652, guid: db34f65a8d4b0884c9aebcb5ab0c3a8e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224364192486888652, guid: db34f65a8d4b0884c9aebcb5ab0c3a8e,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224276083132224672, guid: db34f65a8d4b0884c9aebcb5ab0c3a8e,
         type: 2}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: db34f65a8d4b0884c9aebcb5ab0c3a8e, type: 2}
