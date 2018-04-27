@@ -9,6 +9,8 @@ TagManager:
   - PseudoBlock
   - SpawnTile
   - ZoonSlider
+  - DATA
+  - VolumeSlider
   layers:
   - Default
   - TransparentFX
