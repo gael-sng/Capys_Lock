@@ -68,7 +68,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278715169451748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.08, y: 0.55, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0.432, z: 0}
   m_LocalScale: {x: 3.039838, y: 3.0398393, z: 3.0398393}
   m_Children: []
   m_Father: {fileID: 4317034750635116}
@@ -87,7 +87,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _MaxLife: 10
   _ActualLife: 0
-  _DamageThreshold: 0.01
+  _DamageThreshold: 7
 --- !u!212 &212262703425710952
 SpriteRenderer:
   m_ObjectHideFlags: 1

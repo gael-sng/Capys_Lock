@@ -84,7 +84,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 30
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e79b6d4866c9743a2ba36c4f9e6798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MyState: 1
+  _MyGrid: {fileID: 0}
   _ListOfTiles: []
 --- !u!114 &114367608061583210
 MonoBehaviour:
@@ -142,9 +142,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ce0a9d78cb7041af68dc51dd3834f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxLife: 75
+  _MaxLife: 5
   _ActualLife: 100
-  _DamageThreshold: 10
+  _DamageThreshold: 5
 --- !u!212 &212098336010286364
 SpriteRenderer:
   m_ObjectHideFlags: 1

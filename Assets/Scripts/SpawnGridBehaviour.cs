@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnGridBehaviour : MonoBehaviour {
 	[SerializeField] List<GameObject> _ListOfBlocks;
@@ -9,10 +10,10 @@ public class SpawnGridBehaviour : MonoBehaviour {
 		//(numero de blocos disponiveiws a serem utilizados)
 	[SerializeField] int _MaxNumberOfBlocks = 20;
 	private int _ActualNumberOfBlocks;
-
+	private Text _ActualNumberOfBlocksText;
 
 	//Variaveis voltadas para a seleção da grid
-	[SerializeField] int _MaxNumberSelected = 4;
+	private int _MaxNumberSelected = 4;
 	private bool _selecting;
 	private List<SpawnTileBehaviour> _SelectedTiles;
 
@@ -25,6 +26,15 @@ public class SpawnGridBehaviour : MonoBehaviour {
 			_MaxNumberSelected = 4;
 		if (_MaxNumberOfBlocks <= 0)
 			_MaxNumberOfBlocks = 20;
+
+		
+		Text[] TextList = FindObjectsOfType<Text> ();
+		for(int i = 0; i < TextList.Length; i++){
+			if (TextList [i].name == "wood_number_text") {
+				_ActualNumberOfBlocksText = TextList [i];
+				break;
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -33,6 +43,7 @@ public class SpawnGridBehaviour : MonoBehaviour {
 			_TrySpawn ();
 			_ResetSelection ();
 		}
+		_ActualNumberOfBlocksText.text = (_MaxNumberOfBlocks - _ActualNumberOfBlocks).ToString();
 	}
 
 
@@ -104,45 +115,37 @@ public class SpawnGridBehaviour : MonoBehaviour {
 		switch (_SelectedTiles.Count) {
 		case 1:
 			//instanciar bloco 1x1
-			Debug.Log ("1x1");
 			Blockindex = 0;
 			break;
 		case 2:
 			//instanciar bloco 2x1 ou  1x2
 			if(matrix[0,0] && matrix[0,1]){
-				Debug.Log("1x2");
 				Blockindex = 1;
 				WillRotate = true;
 			}
 			if(matrix[0,0] && matrix[1,0]){
-				Debug.Log("2x1");
 				Blockindex = 1;
 			}
 			break;
 		case 3:
 			//instanciar bloco 3x1 ou 1x3
 			if(matrix[0,0] && matrix[0,1] && matrix[0,2]){
-				Debug.Log("1x3");
 				Blockindex = 2;
 				WillRotate = true;
 			}
 			if(matrix[0,0] && matrix[1,0] && matrix[2,0]){
-				Debug.Log("3x1");
 				Blockindex = 2;
 			}
 			break;
 		case 4:
 			if(matrix[0,0] && matrix[0,1] && matrix[0,2] && matrix[0,3]){
-				Debug.Log("1x4");
 				Blockindex = 3;
 				WillRotate = true;
 			}
 			if(matrix[0,0] && matrix[1,0] && matrix[2,0] && matrix[3,0]){
-				Debug.Log("4x1");
 				Blockindex = 3;
 			}
 			if(matrix[0,0] && matrix[1,0] && matrix[0,1] && matrix[1,1]){
-				Debug.Log("2x2");
 				Blockindex = 4;
 			}
 			//instanciar bloco 4x1 ou 1x4 ou 2x2

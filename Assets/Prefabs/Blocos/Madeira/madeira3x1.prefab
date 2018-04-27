@@ -129,9 +129,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d59ce0a9d78cb7041af68dc51dd3834f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MaxLife: 225
+  _MaxLife: 5
   _ActualLife: 100
-  _DamageThreshold: 10
+  _DamageThreshold: 5
 --- !u!114 &114252017220415674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e79b6d4866c9743a2ba36c4f9e6798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _MyState: 1
+  _MyGrid: {fileID: 0}
   _ListOfTiles: []
 --- !u!212 &212332946028669178
 SpriteRenderer:
