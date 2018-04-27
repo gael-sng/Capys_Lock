@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditorInternal;
+#endif
 
-[ExecuteInEditMode]
 public class Attacker : MonoBehaviour {
 
     public enum ScriptAssoc
@@ -138,9 +139,12 @@ public class Attacker : MonoBehaviour {
     //Chamado toda vez que uma variável é alterada
     private void OnValidate()
     {
-        if(flexAttack == null)
+        /*if(flexAttack == null)
         {
             updateFlexAttackRef();
+			if (flexAttack == null) {
+				return;
+			}
         }
         if(flexAttack.attackers == null)
         {
@@ -164,21 +168,21 @@ public class Attacker : MonoBehaviour {
             {
                 scriptAssociado = ScriptAssoc.Shoot;
             }
-        }
+        }*/
     }
 
 
 
     private void OnDestroy()
     {
-        if(flexAttack.attackers != null)
+		if(flexAttack != null && flexAttack.attackers != null)
         {
             flexAttack.attackers.Remove(this);
         }
     }
 
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Attacker))]
 public class AttackerEditor : Editor
 {
@@ -281,3 +285,5 @@ public class AttackerEditor : Editor
         reorderableList.DoLayoutList();
     }
 }
+
+#endif
