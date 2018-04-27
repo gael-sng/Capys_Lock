@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditorInternal;
-
+#endif
 
 public class FlexAttack : MonoBehaviour {
 
@@ -372,7 +373,7 @@ public class FlexAttack : MonoBehaviour {
 		}
 	}
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(FlexAttack))]
 public class FlexAttackEditor : Editor
 {
@@ -466,3 +467,4 @@ public class FlexAttackEditor : Editor
 		reorderableList.DoLayoutList();
 	}
 }
+#endif
