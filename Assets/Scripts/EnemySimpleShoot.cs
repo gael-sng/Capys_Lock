@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySimpleShoot : MonoBehaviour {
 
-    public float airTime = 1f; //We chose an airtime so we can find a unique solution to the problem
+    public float maxVelocity = 20f; //We chose an airtime so we can find a unique solution to the problem
 
     public GameObject shootPrefab;
 
@@ -25,6 +25,7 @@ public class EnemySimpleShoot : MonoBehaviour {
 
     private bool isRight = false;
 
+    private float airTime = 0;
 	// Use this for initialization
 	void Start () {
         targetObj = transform.Find("Target");
@@ -61,12 +62,12 @@ public class EnemySimpleShoot : MonoBehaviour {
 
         //Convert position from touch to world
         Transform toCalculate = (rotationTransform == null) ? transform : rotationTransform;
-        Vector2 newVelocity = calculateParabola(toCalculate.position, target);
-        rotateTranform(newVelocity);
-        newVelocity = calculateParabola(spawnPosition.position, target);
+        //Vector2 newVelocity = calculateParabola(toCalculate.position, target);
+        //rotateTranform(newVelocity);
+        Vector2 newVelocity = calculateParabola(spawnPosition.position, target);
 
 
-        Transform toSpawn = (rotationTransform == null) ? transform : spawnPosition;
+        Transform toSpawn = (spawnPosition != null) ? spawnPosition : transform;
         GameObject proj = GameObject.Instantiate(shootPrefab, toSpawn.position, shootRotation, transform.parent);
         Rigidbody2D rb2d = proj.GetComponent<Rigidbody2D>();
         rb2d.velocity = newVelocity;
@@ -82,13 +83,23 @@ public class EnemySimpleShoot : MonoBehaviour {
         target = finalPos;
 
         float g = Physics2D.gravity.y;
-        float vx = (finalPos.x - initPos.x)/airTime;
-        float vy = (finalPos.y - initPos.y) / airTime - (g / 2) * airTime;
+		float dx = (finalPos.x - initPos.x);
+		float dy = (finalPos.y - initPos.y);
+        
+        double to = Mathf.Sqrt((dx*dx+dy*dy)/(maxVelocity*maxVelocity));
+        
 
-        return new Vector2(vx, vy);
+        return calculateVelocity(to, dx, dy);
+    }
+
+    private Vector2 calculateVelocity(double to, float dx, float dy){
+        double vx = dx/to;
+        double vy = (dy/to) - (Physics.gravity.y * to / 2);
+        return new Vector2( (float) vx, (float) vy);  
     }
 
     public float getFlyTime() {
+        //return airTime;
         return airTime;
     }
 
