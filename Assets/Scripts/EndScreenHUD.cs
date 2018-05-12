@@ -62,12 +62,13 @@ public class EndScreenHUD : MonoBehaviour {
 
     public void clickNextButton() {
         string actualStage = SceneManager.GetActiveScene().name;
-        string[] result = actualStage.Split(new string[] { "[Fase]" }, System.StringSplitOptions.None);
-        int number = int.Parse(result[1]);
+        //string[] result = actualStage.Split(new string[] { "[Fase]" }, System.StringSplitOptions.None);
+		int number = (int)char.GetNumericValue (actualStage, 4);
 
         number++;
-
-        SceneManager.LoadScene("Scenes/Fase" + number);
+		if (number == 12)
+			number = 1;
+        SceneManager.LoadScene("Fase" + number);
     }
 
     public void clickSelectButton() {
