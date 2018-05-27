@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class EndScreenHUD : MonoBehaviour {
-
+	private GameObject objectWithScript;
     public Text winText;
     public Text scoreText;
     public Image imageRef;
@@ -16,9 +16,12 @@ public class EndScreenHUD : MonoBehaviour {
     public Color backGroundImage;
     public GameObject panel;
 
+	public Text highscoreText;
 	//pegando o numero da fase - OBS: Não fiz isso pq ai todas as cenas devem ter um numero no final de seu nome
-	// private string s1 = SceneManager.GetActiveScene().name;
-	// private string s2 = s1.Substring (s1.Length -1);
+	//	 private string s1;
+	// private string[] s2;
+	// private int fase;
+
 	// converter o ultimo valor q eh um numero para um int e colocar na variavel fase
 	//private int fasenumber; 
 
@@ -30,7 +33,10 @@ public class EndScreenHUD : MonoBehaviour {
     public string lostMessage = "You lost";
     
     public void endGame(bool hasLost, int score) {
+		
+		objectWithScript = GameObject.FindGameObjectWithTag ("DATA");
         panel.SetActive(true);
+		highscoreText.text = objectWithScript.GetComponent<DataToSave> ().LoadScore_Fase (fasenumber).ToString();
 		if (hasLost) {
 			winText.text = lostMessage;
 			scoreText.transform.parent.gameObject.SetActive (false);
@@ -48,7 +54,7 @@ public class EndScreenHUD : MonoBehaviour {
         backImage.color = backGroundImage;
 
         StartCoroutine(incrementScore(score));
-		DataToSave.Scores [fasenumber] = score;
+
     }
 
     private IEnumerator incrementScore(int targetScore)
@@ -65,6 +71,7 @@ public class EndScreenHUD : MonoBehaviour {
         }
 
         scoreText.text = targetScore.ToString("D" + decimalPlaces);
+		objectWithScript.GetComponent<DataToSave> ().SaveScore (decimalPlaces, fasenumber);
     }
 
     public void clickRetryButton() {

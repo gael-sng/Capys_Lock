@@ -20,7 +20,7 @@ public class SettingsMenu : MonoBehaviour {
 			Debug.Log ("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhhhh");
 	}
 
-	public void SetVolume(){
+	public void SetVolume(){ 
 		audioMixer.SetFloat ("Volume", sliderVolume.GetComponent<Slider>().value );
 		objectWithScript.GetComponent<DataToSave> ().SaveVolume (sliderVolume.GetComponent<Slider>().value );
 	}

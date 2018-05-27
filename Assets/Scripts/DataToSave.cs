@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class DataToSave : MonoBehaviour {
 	//public static int Dinheiro;
 	//public Text textvalue;
-	private int Number_Level = 1 ;
+	//private int Number_Level = 1 ;
 	public GameObject[] Datas;
 	public static int[] Scores;
 	public static int Money;
@@ -14,7 +14,7 @@ public class DataToSave : MonoBehaviour {
 
 	void Awake(){
 		Datas = GameObject.FindGameObjectsWithTag ("DATA");
-
+		Scores = new int[20];
 		if (Datas.Length >= 2) {
 			Destroy (Datas [0]);
 		}
@@ -51,7 +51,8 @@ public class DataToSave : MonoBehaviour {
 		Scores [fase] = value;
 		PlayerPrefs.SetInt ("Scores" + fase, Scores[fase]);
 	}
-	public int LoadScore(){
+	/*
+	public int[] LoadScore(){
 		if (PlayerPrefs.HasKey ("Scores")) {
 			for (int x = 0; x < Number_Level; x++) {
 				Scores[x] =  PlayerPrefs.GetInt("Scores"+ x);
@@ -63,6 +64,16 @@ public class DataToSave : MonoBehaviour {
 		}
 		return Scores;
 	}
+*/
+	public int LoadScore_Fase(int fase){
+		if (PlayerPrefs.HasKey ("Scores")) {
+			Scores [fase] = PlayerPrefs.GetInt ("Scores" + fase);
+		} else {
+			Scores [fase] = 0;
+		}
+		return Scores [fase];
+	}
+
 		/*
 	void Start(){
 		if (PlayerPrefs.HasKey ("Money")) {

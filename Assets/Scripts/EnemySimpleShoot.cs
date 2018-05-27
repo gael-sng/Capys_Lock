@@ -87,7 +87,7 @@ public class EnemySimpleShoot : MonoBehaviour {
 		float dy = (finalPos.y - initPos.y);
         
         double to = Mathf.Sqrt((dx*dx+dy*dy)/(maxVelocity*maxVelocity));
-        
+		airTime = (float)to;
 
         return calculateVelocity(to, dx, dy);
     }
