@@ -7,6 +7,7 @@ public class ExplosiveBlock : MonoBehaviour {
     public float maxExplosionForce = 10f;
     public float maxExplosionDamage = 5f;
     public float explosionRange = 2f;
+    public GameObject particlesPrefab;
     private Transform myTransform;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class ExplosiveBlock : MonoBehaviour {
     {
         Collider2D[] hits;
         hits = Physics2D.OverlapCircleAll(myTransform.position, explosionRange);
+        
         foreach (Collider2D hit in hits)
         {
             print("Explodiu: " + hit.gameObject.name);
@@ -47,5 +49,11 @@ public class ExplosiveBlock : MonoBehaviour {
                     rb2d.AddForce(direction.normalized * realForce, ForceMode2D.Impulse);
             }
         }
+        GameObject particleObject = GameObject.Instantiate(particlesPrefab, transform.position, transform.rotation);
+        ParticleSystem particles = particleObject.GetComponent<ParticleSystem>();
+        ParticleSystem.ShapeModule shape = particles.shape;
+        shape.radius = explosionRange;
+        particles.Play();
+        
     }
 }

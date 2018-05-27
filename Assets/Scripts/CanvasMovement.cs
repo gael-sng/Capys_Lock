@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CanvasMovement : MonoBehaviour {
 	public GameObject button;
@@ -11,6 +12,9 @@ public class CanvasMovement : MonoBehaviour {
 	private Vector2 buttonNOTShowingposition ;
 	private Vector2 panelNOTShowingposition ;
 	private bool flag;
+
+
+
 	//private float rangepanel;
 	//private float rangebutton;
 	// Use this for initialization
@@ -33,7 +37,7 @@ public class CanvasMovement : MonoBehaviour {
 	}
 
 	public void Click(){
-		print (flag);
+		
 
 		//rangebutton = Vector2.Distance(buttonNOTShowingposition, buttonShowingposition);
 		//rangepanel = Vector2.Distance(panelNOTShowingposition, panelShowingposition);
