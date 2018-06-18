@@ -48,7 +48,7 @@ public class PseudoBlock: MonoBehaviour {
 		GetComponent<Destructible> ().enabled = true;
 		gameObject.GetComponent<Rigidbody2D> ().gravityScale = 1f;
 		_myColl.isTrigger = false;
-		_myColl.size = new Vector2(_myColl.size.x + 0.1f, _myColl.size.y + 0.1f);
+		//_myColl.size = new Vector2(_myColl.size.x + 0.1f, _myColl.size.y + 0.1f);
 		gameObject.tag = "Destructible";
 		this.enabled = false;
 	}
